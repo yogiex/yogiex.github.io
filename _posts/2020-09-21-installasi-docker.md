@@ -5,7 +5,6 @@ image: http://i.ibb.co/By4z9BG/logo-kecil.png
 bigimg: 
     - "http://i.ibb.co/jwk4m89/containers-truck-port-JPG.webp"
 tags: [docker, container, cloud computing, linux, devops]
-comments: true
 ---
 Hallo selamat pagi, pada postingan kali ini saya ingin sedikit memberi tahu untuk tahapan installasi docker engine, atau aplikasi docker untuk mengakses docker itu sendiri, dan mungkin kedepannya saya juga akan sedikit memberi tutorial tentang docker.
 mungkin yang pertama saya akan memberi tahu instalasi docker desktop pada sistem operasi windows silahkan dibaca dan mencoba pahami langkah demi langkah sahabat.

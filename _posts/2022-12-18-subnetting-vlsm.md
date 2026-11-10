@@ -6,7 +6,6 @@ image:
 bigimg: 
     - ""
 tags: [fundamental, basic]
-comments: true
 ---
 
 VLSM atau Variable Length subnet mask adalah jenis subnetting atau membagi suatu jaringan yang lebih kecil sesuai dengan panjang atau jumlah host pada setiap subnetnya. Oleh karena itu jumlah ip yang terbuang tidak terlalu banyak dan mencukupi

@@ -90,16 +90,6 @@ img {
   max-width: 100%;
 }
 
-.disqus-comments {
-  margin-top: 30px;
-}
-
-@media only screen and (min-width: 768px) {
-  .disqus-comments {
-    margin-top: 40px;
-  }
-}
-
 .linked-section {
   padding-top: 60px;
   margin-top: -25px;
@@ -667,6 +657,17 @@ table tr td :first-child {
 table tr th :last-child,
 table tr td :last-child {
   margin-bottom: 0;
+}
+/* Tabel dengan banyak kolom digeser di dalam kotaknya sendiri supaya
+   halaman tidak ikut melebar di layar sempit. */
+@media only screen and (max-width: 767px) {
+  .blog-post table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    font-size: 0.92em;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 /* --- Code blocks --- */

@@ -6,7 +6,6 @@ image: https://octodex.github.com/images/class-act.png
 bigimg: 
     - ""
 tags: [linux, operating system, jaringan komputer,]
-comments: true
 ---
 
 hallo sahabat, postingan kali ini tentang salah satu teknologi jaringan yang lagi naik naiknya pada beberapa tahun terakhir,

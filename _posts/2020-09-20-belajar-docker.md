@@ -5,7 +5,6 @@ image: http://i.ibb.co/By4z9BG/logo-kecil.png
 bigimg: 
     - "http://i.ibb.co/jwk4m89/containers-truck-port-JPG.webp"
 tags: [docker, container, cloud computing, linux, devops]
-comments: true
 ---
 Selamat pagi!! pada postingan saya kali ini, saya ingin sedikit memperkenalkan teknologi container yang terkenal pada pengembangan software tools dan software, jadi sebelum memasuki topik bahasan mengenai docker saya ingin menjelaskan terlebih dahulu tentang container tersebut.
 

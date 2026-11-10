@@ -6,7 +6,6 @@ image:
 bigimg: 
     - ""
 tags: [jaringan komputer, fundamental, basic]
-comments: true
 ---
 
 teman teman semua pasti sudah mengenal cisco packet tracer yang sering digunakan untuk mensimulasikan suatu jaringan, postingan ini aku akan mengenalkan simulator jaringan selain cisco packet tracer, cisco packet tracer dapat mensimulasikan suatu jaringan hingga level WAN atau jaringan yang custom sesuai yang kita inginkan. akan tetapi cisco packet tracer hanya dapat mensimulasikan dari vendor penyedia perangkat jaringan berbasis cisco saja. untuk mensimulasikan jaringan yang tidak berpedoman hanya pada satu vendor jaringan, GNS3 menyediakan fitur tersebut dan bahkan tidak hanya itu saja, GNS3 juga menyediakan dari perangkat end user, router, switch, bahkan firewall yang memiliki fitur yang lebih canggih.

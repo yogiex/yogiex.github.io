@@ -6,7 +6,6 @@ image: ../img/logo-nginx.png
 bigimg: 
     - ""
 tags: [fundamental, basic]
-comments: true
 ---
 
 ![banner](../img/NGINX-logo-rgb-large.png)

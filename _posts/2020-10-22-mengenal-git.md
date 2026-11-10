@@ -5,7 +5,6 @@ image: https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png
 bigimg: 
     - "https://git-scm.com/images/logos/downloads/Git-Logo-2Color.png"
 tags: [github, gitlab, version control system,]
-comments: true
 ---
 
 seperti judul postingan saya ingin mengenalkan salah satu teknologi control version system git,

@@ -6,7 +6,6 @@ image:
 bigimg: 
     - ""
 tags: []
-comments: true
 ---
 
 Ini merupakan catatan belajar saya agar tidak lupa dan dapat dibaca kembali pada kemudian hari.

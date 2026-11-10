@@ -6,7 +6,6 @@ image:
 bigimg:
   - ""
 tags: []
-comments: true
 ---
 
 Berangkat dari masalah kabel putus dan segera untuk menyambungnya kembali dan melakukan konfigurasi sehingga jaringan up kembali?? tenang ada teknologi bernama etherchannel.

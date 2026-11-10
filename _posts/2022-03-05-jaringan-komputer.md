@@ -6,7 +6,6 @@ image:
 bigimg: 
     - ""
 tags: [linux, operating system, jaringan komputer,]
-comments: true
 ---
 
 Halllooo, mungkin beberapa waktu kedepan saya akan lebih aktif menulis postingan terkait jaringan dan sistem operasi , karena sempat berfikir untuk menulis tentang pemrograman juga tapi lebih prioritas terhadap topik tentang jaringan komputer dan sistem operasi. Langsung saja terkait postingan ini, pasti sudah pada tahu karena dari judul postingan ini yang membahas tentang jaringan komputer.

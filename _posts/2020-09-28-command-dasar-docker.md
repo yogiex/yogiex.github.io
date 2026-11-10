@@ -5,7 +5,6 @@ image: https://i.ibb.co/By4z9BG/logo-kecil.png
 bigimg: 
     - "http://i.ibb.co/jwk4m89/containers-truck-port-JPG.webp"
 tags: [docker, container, cloud computing, linux, devops]
-comments: true
 ---
 ![alert](https://i.ibb.co/r2qQJYm/png-clipart-triangular-black-warning-signage-warning-sign-computer-icons-symbol-alert-icon-gallery-m.png)
 **DITUJUKAN UNTUK YANG BARU BELAJAR DOCKER**

@@ -5,7 +5,6 @@ image:
 bigimg: 
     - ""
 tags: [linux, kernel, operating system, jaringan komputer]
-comments: true
 ---
 
 sobat github, mari berkenalan dengan varian kernel linux yang tidak biasa digunakan untuk keseharian, mungkin ada beberapa yang tidak familiar dengan kernel, 

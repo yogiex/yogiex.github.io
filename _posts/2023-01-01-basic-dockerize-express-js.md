@@ -6,7 +6,6 @@ image:
 bigimg: 
     - ""
 tags: [jaringan komputer, fundamental, basic]
-comments: true
 ---
 
 helloo, this article is about how to dockerize node express app in simple way,

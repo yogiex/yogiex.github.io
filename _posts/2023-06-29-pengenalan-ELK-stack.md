@@ -6,7 +6,6 @@ image:
 bigimg: 
     - ""
 tags: []
-comments: true
 ---
 
 ![banner](../img/elk/elk.jpg)
