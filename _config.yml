@@ -23,12 +23,8 @@ description: "Simple As Possible"
 
 # List of links in the navigation bar
 navbar-links:
-  About Me: "aboutme"
-  Resources:
-    - Learn markdown: "http://www.markdowntutorial.com/"
-    - GitHub Pages: "https://pages.github.com/"
-  #Author's home: "http://deanattali.com"
-    - Tag index: "https://yogiex.github.io/tags/"
+  About Me: "aboutme/"
+  Tags: "tags/"
   Networking : ""
   Operating System : ""
 
