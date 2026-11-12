@@ -99,8 +99,9 @@ url-pretty: "yogiex.github.io"  # eg. "deanattali.com/beautiful-jekyll"
 
 # --- Web Statistics Section --- #
 
-# Fill in your Google Analytics ID to track your website using GA (GA4)
-google_analytics: "G-XVNPRPW537"
+# Google Analytics (GA4) — isi dengan ID milik Anda sendiri bila ingin tracking.
+# Kosongkan untuk menonaktifkan analytics sepenuhnya.
+google_analytics: ""
 
 # --- Misc --- #
 
