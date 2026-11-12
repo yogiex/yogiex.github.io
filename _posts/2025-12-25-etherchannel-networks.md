@@ -1,9 +1,9 @@
 ---
 layout: post
 title: Mengenai EtherChannel untuk kebutuhan link high availability di jaringan
-subtitle:
+subtitle: "Konsep EtherChannel untuk menggabungkan beberapa link menjadi satu agar jaringan tetap tersedia saat kabel putus."
 image:
-tags: []
+tags: [jaringan komputer]
 ---
 
 Berangkat dari masalah kabel putus dan segera untuk menyambungnya kembali dan melakukan konfigurasi sehingga jaringan up kembali?? tenang ada teknologi bernama etherchannel.
@@ -13,7 +13,7 @@ EtherChannel merupakan teknologi untuk melakukan aggregasi link dan port untuk m
 
 Ibarat jalan tol yang memiliki banyak jalur lane maka jumlah kendaraan yang dapat melakukan perjalanan berbanding lurus dengan kapasitas jalan.
 
-![](../img/etherchannel/etherchannel-.drawio.png)
+![Diagram EtherChannel antar switch Cisco](../img/etherchannel/etherchannel-.drawio.png)
 
 Gambar diatas merupakan visualisasi dari mengenai etherchannel. Etherchannel dapat dilihat pada jaringan link yang terhubung dari cisco catalyst hingga switch cisco dibawahnya, link terhubung dengan beberapa link sehingga dapat membentuk sebuah connection yang terhubung. Banyak link yang terhubung dapat meningkatkan availability dan fault tolerance ketika salah satu link terputus.
 

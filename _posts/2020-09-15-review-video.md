@@ -1,6 +1,7 @@
 ---
 layout: post
 title: sudah lama tidak upload?
+subtitle: "Rangkuman review video tugas WGTIK tentang Internet of Things, dari kesehatan hingga pertanian, beserta tautan videonya."
 image: /img/Internet-Of-Things-IOT-e1494259888206.png
 tags: [iot, kuliah, WGTIK]
 ---

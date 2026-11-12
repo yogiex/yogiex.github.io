@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Menghitung Subnetting VLSM
-subtitle: 
+subtitle: "Cara menghitung subnetting VLSM untuk lima jaringan berbeda agar alokasi alamat IP tidak banyak terbuang."
 image:
 tags: [fundamental, basic]
 ---
@@ -20,7 +20,7 @@ contoh kita diberikan ip dengan 183.30.10.3/16 dan ada 5 network yang memiliki s
 |network B  | 2             |
 
 
-# Tahapan proses
+## Tahapan proses
 1. menentukan network ID untuk jaringan yang pertama, jaringan yang pertama ialah diurutkan dengan jumlah host terbanyak 
 2. mengubah network ke dalam biner 
 3. operasi AND dengan angka prefix

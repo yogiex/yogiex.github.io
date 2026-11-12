@@ -1,9 +1,9 @@
 ---
 layout: post
 title: Mengenal Log Management menggunakan ELK
-subtitle: 
+subtitle: "Mengenal log management dengan Elasticsearch, Logstash, dan Kibana untuk memantau infrastruktur."
 image: 
-tags: []
+tags: [linux, devops]
 ---
 
 ![banner](../img/elk/elk.jpg)

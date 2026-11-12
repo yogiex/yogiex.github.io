@@ -1,9 +1,9 @@
 ---
 layout: post
 title: Menggunakan nginx container sebagai web service static html
-subtitle: 
+subtitle: "Menjalankan NGINX sebagai web service statis lewat Docker Compose, lengkap dengan pemetaan folder dan log."
 image: 
-tags: []
+tags: [docker, container]
 ---
 
 Ini merupakan catatan belajar saya agar tidak lupa dan dapat dibaca kembali pada kemudian hari.
@@ -37,7 +37,7 @@ direktori /var/log/nginx merupakan file logging yang akan digenerate setiap ada 
 ![folder structure](../img/Screenshot_20230805_231220.png)
 gambar diatas merupakan struktur folder direktori
 
-![](../img/Screenshot_20230805_232530.png)
+![Halaman HTML statis yang disajikan NGINX di localhost](../img/Screenshot_20230805_232530.png)
 
 
 apabila sudah siap untuk keperluannya hanya tinggal menjalan process docker compose dengan menggunakan command

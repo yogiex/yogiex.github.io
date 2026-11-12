@@ -1,6 +1,7 @@
 ---
 layout: post
 title: command dasar docker
+subtitle: "Kumpulan perintah dasar Docker untuk pemula: images, run, ps, sampai mengelola container dari terminal."
 image: https://i.ibb.co/By4z9BG/logo-kecil.png
 bigimg:
     - "https://i.ibb.co/jwk4m89/containers-truck-port-JPG.webp"

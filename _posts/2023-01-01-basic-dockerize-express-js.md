@@ -41,11 +41,11 @@ docker build -t test-api .
 -t test-api is your images name with version name 
 . is to reference file Dockerfile 
 
-![](../img/Screenshot_20230101_132207.png)
+![Keluaran perintah docker build untuk image test-api](../img/Screenshot_20230101_132207.png)
 
 after build docker images then running docker images 
 docker run -it -p 3000:3000 test-api 
 
-![](../img/Screenshot_20230101_132858.png)
+![Log server setelah container test-api dijalankan](../img/Screenshot_20230101_132858.png)
 
 -p means port that host access freely changes to another port to access it

@@ -56,10 +56,10 @@ simulation merupakan simulasi perangkat jaringan seolah olah seperti perangkat y
 
 
 
-# Courses
+## Courses
 GNS3 menyediakan course yang gratis dan berbayar untuk pengguna untuk belajar GNS3 pada website berikut http://academy.gns3.com
 
 
-# Referensi
+## Referensi
 - <https://ngonfig.net/gns3.html>
 - <https://docs.gns3.com/docs/>

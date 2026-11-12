@@ -3,7 +3,7 @@ layout: post
 title: perintah dasar linux
 subtitle: dasar penggunaan command line linux
 image: 
-tags: [linux, operating system, jaringan komputer,]
+tags: [linux, operating system, jaringan komputer]
 ---
 
 Assalamulaikum, saya ingin membagikan beberapa perintah dasar linux yang nantinya akan sedikit berguna ketika sobat menggunakan linux dengan *command line interface (CLI)*.

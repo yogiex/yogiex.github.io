@@ -3,7 +3,7 @@ layout: post
 title: software defined network
 subtitle: penjelasan singkat mengenai software defined network
 image: https://octodex.github.com/images/class-act.png
-tags: [linux, operating system, jaringan komputer,]
+tags: [linux, operating system, jaringan komputer]
 ---
 
 hallo sahabat, postingan kali ini tentang salah satu teknologi jaringan yang lagi naik naiknya pada beberapa tahun terakhir,
@@ -13,17 +13,17 @@ software defined network, pemisahan antara controller dan data plane pada infras
 
 software defined network juga bisa dikatakan paham atau paradigma layaknya pemrograman OOP, sofware defined network teknologi dalam mendesain, mengelola dan implementasikan jaringan. 
 
-# abstraksi jaringan
+## abstraksi jaringan
 software defined network bukan hanya sebatas pemisahan control plane dan data plane untuk meneruskan packet, tetapi membawa sisi pemrograman dan otomasi dalam hal jaringan
 
-# mengapa SDN?
+## mengapa SDN?
 - virtualization dan cloud computing
 - orchestration dan scalability
 - programmability 
 - visibility
 - performance
 
-# arsitektur SDN
+## arsitektur SDN
 ![sdn vs convectional](https://www.researchgate.net/profile/Dengpan_Wang/publication/338116049/figure/fig1/AS:839113909473281@1577071754274/Simple-overview-of-SDN-architecture.jpg)
 
 pada arsitektur jaringan yang konventional contorl plane dan data plane masih digabungkan menjadi satu dalam node jaringan, setiap flow harus didefinisikan pada setiap device atau perangkat jaringan
@@ -33,7 +33,7 @@ didalam arsitektur software defined network bisa dibilang mempermudah pengerjaan
 ![sdn architecture](https://www.sdxcentral.com/cdn-cgi/image/w=748,h=884,fit=scale-down,f=auto,q=85/https://www.sdxcentral.com/wp-content/uploads/2019/10/sdn-architecture-img.jpg)
 
 
-# sdn challenges 
+## sdn challenges 
 beberapa tantangan atau masalah dalam industri software 
 defined network
 - security 

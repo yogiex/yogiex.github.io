@@ -1,9 +1,11 @@
 ---
 layout: post
 title: Github Pages Tempat Nge-blog!!
+subtitle: "Alasan memilih GitHub Pages sebagai tempat menulis blog, dari hosting statis gratis sampai alur menulis dengan Markdown."
 image: /img/octojekyll.png
 bigimg:
   - /img/first.jpeg
+tags: [github]
 ---
 Assamualaikum wr wb perkenalkan nama saya yogi mahasiswa telkom university untuk postingan pertama ini saya tidak akan memperkenalkan profile saya lebih lanjut, untuk melihat profile lebih lanjut akan berada pada bagian [about me](https://yogiex.github.io/aboutme/) yang akan lebih luas,oke sekian perkenalannya selanjutnya akan membahasa sesuai judul postingan ini kenapa saya memilih github sebagai tempat "nge-blog" di github pages,seperti yang kita tau atau orang lain tau kalau "siapa sih yang nggak tau github?" seperti dikalangan developer atau pengembang perangkat lunak pasti tidak asing oleh github dan github membuat fitur "github page" untuk tempat "nge-blog" 
 alasan untuk membuat github page sebagai blog : 

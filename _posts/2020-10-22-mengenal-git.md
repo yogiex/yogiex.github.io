@@ -1,10 +1,11 @@
 ---
 layout: post
 title: pengenalan git dan github
+subtitle: "Pengenalan version control system dengan Git dan GitHub, dari konsep commit hingga alasan memakainya."
 image: https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png
 bigimg: 
     - "https://git-scm.com/images/logos/downloads/Git-Logo-2Color.png"
-tags: [github, gitlab, version control system,]
+tags: [github, gitlab, version control system]
 ---
 
 seperti judul postingan saya ingin mengenalkan salah satu teknologi control version system git,

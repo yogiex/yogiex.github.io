@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Installasi docker pada linux dan windows
+subtitle: "Langkah instalasi Docker Desktop di Windows dan Docker Engine di Linux, disertai tangkapan layar tiap tahap."
 image: https://i.ibb.co/By4z9BG/logo-kecil.png
 bigimg:
     - "https://i.ibb.co/jwk4m89/containers-truck-port-JPG.webp"

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: docker? container?
+subtitle: "Penjelasan konsep container dan mengapa Docker dipakai untuk mengemas aplikasi beserta dependensinya."
 image: https://i.ibb.co/By4z9BG/logo-kecil.png
 bigimg:
     - "https://i.ibb.co/jwk4m89/containers-truck-port-JPG.webp"

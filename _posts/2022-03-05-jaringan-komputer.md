@@ -3,7 +3,7 @@ layout: post
 title: Jaringan komputer
 subtitle: penjelasan singkat mengenai jaringan komputer
 image: 
-tags: [linux, operating system, jaringan komputer,]
+tags: [linux, operating system, jaringan komputer]
 ---
 
 Halllooo, mungkin beberapa waktu kedepan saya akan lebih aktif menulis postingan terkait jaringan dan sistem operasi , karena sempat berfikir untuk menulis tentang pemrograman juga tapi lebih prioritas terhadap topik tentang jaringan komputer dan sistem operasi. Langsung saja terkait postingan ini, pasti sudah pada tahu karena dari judul postingan ini yang membahas tentang jaringan komputer.
@@ -58,7 +58,7 @@ topologi star merupakan bentuk dengan perangkat yang terpusat di tengah dengan k
 Mesh Topology.\
 Topologi mesh merupakan hubungan dengan setiap perangkat yang terhubung langsung oleh kabel. Perangkat yang terhubung berarti mengharuskan memiliki antarmuka jaringan untuk setiap komputer yang ingin terhubung satu sama lain, membuat tidak efisien terhadap implementasi nyata ketika memiliki puluhan komputer. Full mesh memiliki jumlah koneksi n-1, n merupakan jumlah komputer. Contoh ilustrasi seperti gambar dibawah ini:
 
-![](../img/jaringan-komputer/mesh.png)  
+![Ilustrasi topologi mesh](../img/jaringan-komputer/mesh.png)  
 
 Celuller Topology.  
 Topologi seluler merupakan topologi yang memiliki hubungan setiap perangkat oleh jaringan nirkabel untuk setiap cell-nya dibagi dengan daerah tertentu. Perangkat dengan komuniasi cell menggunakan stasiun terpusat atau switch. Switch terhubung oleh router yang akan membagi jaringan ke setiap cell-nya. Contoh gambar seperti dibawah ini:
