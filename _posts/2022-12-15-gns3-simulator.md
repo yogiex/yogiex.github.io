@@ -3,8 +3,6 @@ layout: post
 title: GNS3
 subtitle: Mengenal simulator jaringan selain cisco packet tracer
 image: 
-bigimg: 
-    - ""
 tags: [jaringan komputer, fundamental, basic]
 ---
 
@@ -36,7 +34,7 @@ perangkat lunak tersebut dapat diunduh di https://www.gns3.com/software/download
 ![halaman unduh gns3](../img/Screenshot_20221213_224031.png)
 
 dan mengunduh gns3 VM pada https://www.gns3.com/software/download-vm
-![halaman unduh GNS3 vm](img/Screenshot_20221213_224155.png)
+![halaman unduh GNS3 vm](/img/Screenshot_20221213_224155.png)
 GNS3 terdiri dari dua komponen, yaitu: 
 - GNS3-all-in-one-software (GUI)
 - GNS3 virtual machine (VM)

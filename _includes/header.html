@@ -8,10 +8,10 @@
 	  {% assign imgnum = forloop.index %}
 	  {% for imginfo in bigimg %}
 	    {% if imginfo[0] %}
-		  data-img-src-{{ imgnum }}="{{ imginfo[0] | prepend: site.baseurl | replace: '//', '/' }}"
+		  data-img-src-{{ imgnum }}="{{ imginfo[0] | prepend: site.baseurl }}"
 		  data-img-desc-{{ imgnum }}="{{ imginfo[1] }}"
 		{% else %}
-		  data-img-src-{{ imgnum }}="{{ imginfo | prepend: site.baseurl | replace: '//', '/' }}"
+		  data-img-src-{{ imgnum }}="{{ imginfo | prepend: site.baseurl }}"
 		{% endif %}
 	  {% endfor %}
     {% endfor %}
@@ -34,9 +34,9 @@
 			<h2 class="{{ include.type }}-subheading">{{ page.subtitle }}</h2>
 			{% endif %}
 		  {% endif %}
-		  
+
 		  {% if include.type == "post" %}
-		  <span class="post-meta">Posted on {{ page.date | date: "%B %-d, %Y" }}</span>
+		  <span class="post-meta">Diposting pada {% include tanggal.html d=page.date %}</span>
 		  {% endif %}
         </div>
       </div>
@@ -44,7 +44,7 @@
   </div>
   <span class='img-desc'></span>
 </div>
-{% endif %}
+{% else %}
 <div class="intro-header no-img">
   <div class="container">
     <div class="row">
@@ -59,15 +59,16 @@
 			<h2 class="{{ include.type }}-subheading">{{ page.subtitle }}</h2>
 			{% endif %}
 		  {% endif %}
-		  
+
 		  {% if include.type == "post" %}
-		  <span class="post-meta">Posted on {{ page.date | date: "%B %-d, %Y" }}</span>
+		  <span class="post-meta">Diposting pada {% include tanggal.html d=page.date %}</span>
 		  {% endif %}
         </div>
       </div>
     </div>
   </div>
 </div>
+{% endif %}
 </header>
 
 

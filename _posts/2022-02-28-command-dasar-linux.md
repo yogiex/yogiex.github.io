@@ -3,8 +3,6 @@ layout: post
 title: perintah dasar linux
 subtitle: dasar penggunaan command line linux
 image: 
-bigimg: 
-    - ""
 tags: [linux, operating system, jaringan komputer,]
 ---
 

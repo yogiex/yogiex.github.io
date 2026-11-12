@@ -1,7 +1,7 @@
 ---
 layout: post
 title: sudah lama tidak upload?
-image: ../img/Internet-Of-Things-IOT-e1494259888206.png
+image: /img/Internet-Of-Things-IOT-e1494259888206.png
 tags: [iot, kuliah, WGTIK]
 ---
 selamat pagi!!! pada postingan kali ini saya ingin sedikit menambah postingan lagi dengan mem-publish dari review video yang merupakan tugas dari salah satu mata kuliah wawasan global TIK

@@ -3,8 +3,6 @@ layout: post
 title: software defined network
 subtitle: penjelasan singkat mengenai software defined network
 image: https://octodex.github.com/images/class-act.png
-bigimg: 
-    - ""
 tags: [linux, operating system, jaringan komputer,]
 ---
 

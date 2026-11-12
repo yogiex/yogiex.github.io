@@ -3,8 +3,6 @@ layout: post
 title: Mengenai EtherChannel untuk kebutuhan link high availability di jaringan
 subtitle:
 image:
-bigimg:
-  - ""
 tags: []
 ---
 

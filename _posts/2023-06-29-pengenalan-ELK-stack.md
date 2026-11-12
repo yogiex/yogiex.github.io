@@ -3,8 +3,6 @@ layout: post
 title: Mengenal Log Management menggunakan ELK
 subtitle: 
 image: 
-bigimg: 
-    - ""
 tags: []
 ---
 

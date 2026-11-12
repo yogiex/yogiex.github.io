@@ -2,8 +2,6 @@
 layout: post
 title: mptcp kernel
 image: 
-bigimg: 
-    - ""
 tags: [linux, kernel, operating system, jaringan komputer]
 ---
 

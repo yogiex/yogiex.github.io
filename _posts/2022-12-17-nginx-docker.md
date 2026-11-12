@@ -2,9 +2,7 @@
 layout: post
 title: NGINX docker Web Service
 subtitle: Membuat Web Service NGINX Dengan Docker
-image: ../img/logo-nginx.png
-bigimg: 
-    - ""
+image: /img/logo-nginx.png
 tags: [fundamental, basic]
 ---
 

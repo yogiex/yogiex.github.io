@@ -13,9 +13,6 @@
 
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }} {{ site.title-separator }} {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
 
-  {% include gtag.html %}
-  {% include gtm_head.html %}
-  {% include google_analytics.html %}
   {% include analytics.html %}
 
   {% if layout.common-ext-css %}
@@ -76,7 +73,7 @@
   {% endif %}
 
 
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}" />
 
   {% if page.id %}
   <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
@@ -92,11 +89,23 @@
   <meta property="og:image" content="{{ site.url }}{{ site.avatar }}" />
   {% endif %}
 
+  {% if page.layout == 'post' %}
+  <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}" />
+  {% if page.updated %}
+  <meta property="article:modified_time" content="{{ page.updated | date_to_xmlschema }}" />
+  {% endif %}
+  <meta property="article:author" content="{{ site.author.name }}" />
+  {% for tag in page.tags %}
+  <meta property="article:tag" content="{{ tag }}" />
+  {% endfor %}
+  {% endif %}
 
   <!-- Twitter summary cards -->
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:site" content="@{{ site.author.twitter }}" />
-  <meta name="twitter:creator" content="@{{ site.author.twitter }}" />
+  <meta name="twitter:card" content="{% if page.share-img %}summary_large_image{% else %}summary{% endif %}" />
+  {% if site.social-network-links.twitter and site.social-network-links.twitter != "" %}
+  <meta name="twitter:site" content="@{{ site.social-network-links.twitter }}" />
+  <meta name="twitter:creator" content="@{{ site.social-network-links.twitter }}" />
+  {% endif %}
 
   {% if page.meta-title %}
   <meta name="twitter:title" content="{{ page.meta-title }}" />
@@ -120,8 +129,60 @@
   <meta name="twitter:image" content="{{ site.url }}{{ site.avatar }}" />
   {% endif %}
 
-  {% if site.matomo %}
-  {% include matomo.html %}
+  <!-- matomo disabled: not configured -->
+
+  {% if page.layout == 'post' %}
+  {%- assign ld_img = page.share-img -%}
+  {%- if ld_img == nil or ld_img == "" -%}
+    {%- assign ld_img = page.bigimg.first -%}
+  {%- endif -%}
+  {%- if ld_img == nil or ld_img == "" -%}
+    {%- assign ld_img = site.avatar -%}
+  {%- endif -%}
+  {%- if ld_img contains "://" -%}
+    {%- assign ld_img_abs = ld_img -%}
+  {%- else -%}
+    {%- assign ld_img_abs = ld_img | prepend: site.url -%}
+  {%- endif -%}
+  {%- assign ld_modified = page.updated | default: page.date -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "{{ site.url }}{{ page.url }}"
+    },
+    "headline": {{ page.title | jsonify }},
+    "description": {{ page.subtitle | default: page.excerpt | strip_html | normalize_whitespace | jsonify }},
+    "image": "{{ ld_img_abs }}",
+    "datePublished": "{{ page.date | date_to_xmlschema }}",
+    "dateModified": "{{ ld_modified | date_to_xmlschema }}",
+    "author": {
+      "@type": "Person",
+      "name": {{ site.author.name | jsonify }},
+      "url": "{{ site.url }}/"{%- if site.social-network-links.github or site.social-network-links.linkedin or site.social-network-links.twitter -%},
+      "sameAs": [
+        {%- assign ld_sep = "" -%}
+        {%- if site.social-network-links.github -%}"https://github.com/{{ site.social-network-links.github }}"{%- assign ld_sep = "," -%}{%- endif -%}
+        {%- if site.social-network-links.linkedin -%}{{ ld_sep }}"https://www.linkedin.com/in/{{ site.social-network-links.linkedin }}"{%- assign ld_sep = "," -%}{%- endif -%}
+        {%- if site.social-network-links.twitter -%}{{ ld_sep }}"https://twitter.com/{{ site.social-network-links.twitter }}"{%- endif -%}
+      ]{%- endif -%}
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": {{ site.author.name | jsonify }},
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ site.url }}{{ site.avatar }}",
+        "width": 512,
+        "height": 512
+      }
+    },
+    "inLanguage": "id",
+    "keywords": {{ page.tags | join: ", " | jsonify }}
+  }
+  </script>
   {% endif %}
 
 </head>

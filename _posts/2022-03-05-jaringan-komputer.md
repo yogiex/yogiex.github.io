@@ -3,8 +3,6 @@ layout: post
 title: Jaringan komputer
 subtitle: penjelasan singkat mengenai jaringan komputer
 image: 
-bigimg: 
-    - ""
 tags: [linux, operating system, jaringan komputer,]
 ---
 

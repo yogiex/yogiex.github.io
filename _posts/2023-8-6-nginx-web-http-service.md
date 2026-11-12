@@ -3,8 +3,6 @@ layout: post
 title: Menggunakan nginx container sebagai web service static html
 subtitle: 
 image: 
-bigimg: 
-    - ""
 tags: []
 ---
 

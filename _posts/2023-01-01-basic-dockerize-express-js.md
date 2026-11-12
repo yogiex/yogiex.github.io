@@ -3,8 +3,6 @@ layout: post
 title: Basic Dockerize Express JS App in Dockerfile
 subtitle: how to dockerizing node express app in simple way
 image: 
-bigimg: 
-    - ""
 tags: [jaringan komputer, fundamental, basic]
 ---
 

@@ -3,8 +3,6 @@ layout: post
 title: Menghitung Subnetting VLSM
 subtitle: 
 image:
-bigimg: 
-    - ""
 tags: [fundamental, basic]
 ---
 
