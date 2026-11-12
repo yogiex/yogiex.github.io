@@ -1,10 +1,11 @@
-{% if site.analytics %}
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XVNPRPW537"></script>
+{% if site.google_analytics and site.google_analytics != "" %}
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
-  gtag('config', 'G-XVNPRPW537');
+  gtag('config', '{{ site.google_analytics }}');
 </script>
+<!-- End Google Analytics -->
 {% endif %}
