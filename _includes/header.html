@@ -1,25 +1,55 @@
 <!-- TODO this file has become a mess, refactor it -->
 
-{% if page.bigimg or page.title %}
+{%- comment -%}
+  Normalisasi bigimg sebelum dirender. Liquid menganggap string kosong sebagai
+  truthy, sehingga `bigimg: - ""` dulu menghasilkan data-num-img tanpa
+  data-img-src dan berujung pada request ke .../undefined. Hitung hanya entri
+  yang benar-benar berisi, lalu pakai jumlah itu untuk seluruh blok di bawah.
+{%- endcomment -%}
+{%- assign big_count = 0 -%}
+{%- if page.bigimg and page.bigimg != empty -%}
+  {%- if page.bigimg.first -%}
+    {%- for b in page.bigimg -%}
+      {%- if b.first -%}{%- assign b_src = b[0] -%}{%- else -%}{%- assign b_src = b -%}{%- endif -%}
+      {%- if b_src and b_src != "" -%}{%- assign big_count = big_count | plus: 1 -%}{%- endif -%}
+    {%- endfor -%}
+  {%- else -%}
+    {%- assign big_count = 1 -%}
+  {%- endif -%}
+{%- endif -%}
 
-{% if page.bigimg %}
-  <div id="header-big-imgs" data-num-img={% if page.bigimg.first %}{{ page.bigimg.size }}{% else %}1{% endif %}
-    {% for bigimg in page.bigimg %}
-	  {% assign imgnum = forloop.index %}
-	  {% for imginfo in bigimg %}
-	    {% if imginfo[0] %}
-		  data-img-src-{{ imgnum }}="{{ imginfo[0] | prepend: site.baseurl }}"
-		  data-img-desc-{{ imgnum }}="{{ imginfo[1] }}"
-		{% else %}
-		  data-img-src-{{ imgnum }}="{{ imginfo | prepend: site.baseurl }}"
-		{% endif %}
-	  {% endfor %}
-    {% endfor %}
+{% if big_count > 0 or page.title %}
+
+{% if big_count > 0 %}
+  <div id="header-big-imgs" data-num-img="{{ big_count }}"
+    {% assign imgnum = 0 %}
+    {% if page.bigimg.first %}
+      {% for bigimg in page.bigimg %}
+        {% if bigimg.first %}
+          {% assign b_src = bigimg[0] %}
+          {% assign b_desc = bigimg[1] %}
+        {% else %}
+          {% assign b_src = bigimg %}
+          {% assign b_desc = "" %}
+        {% endif %}
+        {% if b_src and b_src != "" %}
+          {% assign imgnum = imgnum | plus: 1 %}
+          {% assign b_url = b_src %}
+          {% unless b_src contains "://" %}{% assign b_url = b_src | relative_url %}{% endunless %}
+          data-img-src-{{ imgnum }}="{{ b_url }}"
+          {% if b_desc != "" %} data-img-desc-{{ imgnum }}="{{ b_desc }}"{% endif %}
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      {% assign b_url = page.bigimg %}
+      {% unless page.bigimg contains "://" %}{% assign b_url = page.bigimg | relative_url %}{% endunless %}
+      data-img-src-1="{{ b_url }}"
+    {% endif %}
   ></div>
 {% endif %}
 
-<header class="header-section {% if page.bigimg %}has-img{% endif %}">
-{% if page.bigimg %}
+<header class="header-section {% if big_count > 0 %}has-img{% endif %}">
+{% if big_count > 0 %}
 <div class="big-img intro-header">
   <div class="container">
     <div class="row">
