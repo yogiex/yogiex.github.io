@@ -157,6 +157,7 @@ exclude:
   - Gemfile.lock
   - LICENSE
   - README.md
+  - SECURITY-AUDIT-2026-11-12.md
   - Vagrantfile
   - .opencode
   - .agents
