@@ -9,6 +9,11 @@ layout: null
 body {
   font-family: 'Lora', 'Times New Roman', serif;
   font-size: 18px;
+  /* URL panjang di dalam teks dilipat supaya halaman tidak melebar di layar
+     sempit. word-break: break-all sengaja tidak dipakai agar blok kode tetap
+     terbaca. */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
   color: #404040;
   position: relative;
   background-color: {{ site.page-col }};
@@ -663,7 +668,8 @@ table tr td :last-child {
 /* Tabel dengan banyak kolom digeser di dalam kotaknya sendiri supaya
    halaman tidak ikut melebar di layar sempit. */
 @media only screen and (max-width: 767px) {
-  .blog-post table {
+  .blog-post table,
+  .container > .row table {
     display: block;
     width: 100%;
     overflow-x: auto;
@@ -677,6 +683,9 @@ table tr td :last-child {
 pre {
   font-size: 16px;
   line-height: 1.5em;
+  /* Eksplisit, tidak hanya mengandalkan normalize.css dari Bootstrap. */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 pre code {
   white-space: pre;
