@@ -1,14 +1,30 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
   <title>{% if page.use-site-title %}{{ site.title }} {{ site.title-separator }} {{ site.description }}{% elsif page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
 
   <meta name="author" content="{{ site.author.name }}" />
 
-  {% if page.subtitle %}
-  <meta name="description" content="{{ page.subtitle }}">
+  {%- comment -%}
+    Satu sumber untuk meta description: subtitle, lalu description, lalu
+    kutipan paragraf pertama, terakhir deskripsi situs. Dipakai juga oleh
+    OpenGraph dan Twitter supaya tidak ada halaman tanpa deskripsi dan tidak
+    ada Liquid mentah yang bocor ke atribut.
+  {%- endcomment -%}
+  {%- assign meta_desc = page.subtitle | default: page.description -%}
+  {%- if meta_desc == nil or meta_desc == "" -%}
+    {%- assign meta_desc = page.excerpt | strip_html | normalize_whitespace | truncate: 160 -%}
+  {%- endif -%}
+  {%- if meta_desc == nil or meta_desc == "" -%}
+    {%- assign meta_desc = site.description -%}
+  {%- endif -%}
+  {%- assign meta_desc_clean = meta_desc | strip_html | normalize_whitespace | xml_escape -%}
+  <meta name="description" content="{{ meta_desc_clean }}" />
+
+  {% if page.url == '/404.html' %}
+  <meta name="robots" content="noindex" />
   {% endif %}
 
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }} {{ site.title-separator }} {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
@@ -65,11 +81,9 @@
   {% endif %}
 
    {% if page.meta-description %}
-  <meta property="og:description" content="{{ page.meta-description }}">
-  {% elsif page.subtitle %}
-  <meta property="og:description" content="{{ page.subtitle }}">
+  <meta property="og:description" content="{{ page.meta-description | xml_escape }}">
   {% else %}
-  <meta property="og:description" content="{{ page.content | strip_html | xml_escape | truncatewords: 50 }}">
+  <meta property="og:description" content="{{ meta_desc_clean }}">
   {% endif %}
 
 
@@ -78,7 +92,7 @@
   {% if page.id %}
   <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
   <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
-  {% else %}
+  {% elsif page.url != '/404.html' %}
   <meta property="og:url" content="{{ site.url }}{{ page.url | remove: '/index.html' | remove: '.html' }}" />
   <link rel="canonical" href="{{ site.url }}{{ page.url | remove: '/index.html' | remove: '.html' }}" />
   {% endif %}
@@ -116,11 +130,9 @@
   {% endif %}
 
   {% if page.meta-description %}
-  <meta name="twitter:description" content="{{ page.meta-description }}">
-  {% elsif page.subtitle %}
-  <meta name="twitter:description" content="{{ page.subtitle }}">
+  <meta name="twitter:description" content="{{ page.meta-description | xml_escape }}">
   {% else %}
-  <meta name="twitter:description" content="{{ page.content | strip_html | xml_escape | truncatewords: 50 }}">
+  <meta name="twitter:description" content="{{ meta_desc_clean }}">
   {% endif %}
 
   {% if page.share-img %}
@@ -154,7 +166,7 @@
       "@id": "{{ site.url }}{{ page.url }}"
     },
     "headline": {{ page.title | jsonify }},
-    "description": {{ page.subtitle | default: page.excerpt | strip_html | normalize_whitespace | jsonify }},
+    "description": {{ meta_desc | strip_html | normalize_whitespace | jsonify }},
     "image": "{{ ld_img_abs }}",
     "datePublished": "{{ page.date | date_to_xmlschema }}",
     "dateModified": "{{ ld_modified | date_to_xmlschema }}",
