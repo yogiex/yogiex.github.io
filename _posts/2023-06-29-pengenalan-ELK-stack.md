@@ -7,7 +7,7 @@ tags: []
 ---
 
 ![banner](../img/elk/elk.jpg)
-image url: https://sloopstash.com/blog/how-to-get-started-with-elk-stack.html
+*Sumber gambar: [Sloopstash](https://sloopstash.com/blog/how-to-get-started-with-elk-stack.html).*
 
 Server, juga dikenal sebagai peladen, adalah suatu sistem komputer yang memiliki fungsi khusus untuk menyimpan data. Data yang disimpan di server terdiri dari informasi dan berbagai jenis dokumen yang kompleks. Layanan ini ditujukan untuk klien yang membutuhkan informasi untuk pengguna atau pengunjung. Untuk menyediakan layanan akses lebih cepat untuk mengirim atau menerima data dan informasi yang tersedia pada server, server fisiknya terdiri dari jaringan komputer dan terdiri dari banyak komponen pendukung prosesor serta RAM yang berkapasitas besar.
 
