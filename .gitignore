@@ -3,6 +3,12 @@ _site
 .sass-cache
 .vagrant
 
+# jekyll / bundler
+.jekyll-cache
+.jekyll-metadata
+.bundle
+vendor/bundle
+
 # general
 .DS_Store
 Thumbs.db
