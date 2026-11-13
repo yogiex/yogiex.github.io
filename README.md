@@ -4,6 +4,7 @@
 [![Jekyll](https://img.shields.io/badge/Jekyll-3.10-CC0000?logo=jekyll&logoColor=white)](https://jekyllrb.com/)
 [![Ruby](https://img.shields.io/badge/Ruby-3.2-CC342D?logo=ruby&logoColor=white)](https://www.ruby-lang.org/)
 [![Hosted on GitHub Pages](https://img.shields.io/badge/Hosted-GitHub%20Pages-222222?logo=github&logoColor=white)](https://pages.github.com/)
+[![Build](https://github.com/yogiex/yogiex.github.io/actions/workflows/build.yml/badge.svg)](https://github.com/yogiex/yogiex.github.io/actions/workflows/build.yml)
 
 > Personal blog of **Priyagung Yogi** — notes on digital forensics, computer
 > networking, Linux, containers, and CTF. A static Jekyll site published
@@ -44,7 +45,7 @@
 | Interaction | jQuery 1.11.2 + Bootstrap 3 JS | `js/main.js` for navbar and header image; no JS bundler |
 | Plugins | `jekyll-paginate`, `jekyll-sitemap` | 5 posts per page; RSS is hand-written in `feed.xml` |
 | Build & hosting | GitHub Pages | Native build from `master`, no staging environment |
-| CI | GitHub Actions | Build-only: `jekyll build --strict_front_matter` plus four HTML checks |
+| CI | GitHub Actions | Build-only, green: `jekyll build --strict_front_matter` plus four HTML checks |
 | Local preview | Bundler + Docker | Image `ruby:3.2`, same gems as production |
 | Analytics | Google Analytics 4 | `gtag.js` in `_includes/analytics.html`, loaded from `head.html` |
 | Permalink | `/:year-:month-:day-:title/` | Single-segment URL, e.g. `/2025-12-25-etherchannel-networks/` |

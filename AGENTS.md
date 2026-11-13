@@ -97,7 +97,7 @@ _site/  →  https://yogiex.github.io
   Hasilnya URL **satu segmen**, contoh `/2025-12-25-etherchannel-networks/`.
   Jangan mengubah pola ini tanpa mengonversi semua path gambar relatif (`../img/...`, `img/...`) menjadi absolut `/img/...`, karena path relatif saat ini bekerja karena URL hanya satu segmen.
 - `jekyll-paginate` dan `jekyll-sitemap` aktif. `feed.xml` dibuat manual; `jekyll-feed` tidak dipakai.
-- Tidak ada test suite atau linter. CI ada: `.github/workflows/build.yml` menjalankan `bundle exec jekyll build --strict_front_matter` lalu 4 pemeriksaan HTML (URL satu-slash, `url(undefined)`, meta description, jumlah `<h1>`). Workflow ini **belum pernah hijau**; lihat §7.
+- Tidak ada test suite atau linter. CI ada: `.github/workflows/build.yml` menjalankan `bundle exec jekyll build --strict_front_matter` lalu 4 pemeriksaan HTML (URL satu-slash, `url(undefined)`, meta description, jumlah `<h1>`). Workflow hijau per November 2026 setelah `vendor/` dan `.bundle/` di-exclude.
 - `AGENTS.md` di-exclude dari build agar tidak ikut terpublikasi sebagai file statis.
 
 ---
@@ -146,7 +146,7 @@ Per November 2026 perintah ini **lulus** dari HEAD, baik memakai gem dari image 
 
 ### Catatan CI
 
-`.github/workflows/build.yml` sudah berjalan tetapi selalu gagal di langkah build. Kegagalan **tidak bisa direproduksi lokal**: HEAD lulus di `ruby:3.2`, dengan maupun tanpa gem dari cache. Log run butuh token untuk dibaca. Jangan menyimpulkan merahnya CI disebabkan perubahan Anda sebelum log diperiksa.
+`.github/workflows/build.yml` hijau per November 2026. Penyebab kegagalan sebelumnya: Jekyll memproses `vendor/bundle/.../site_template/_posts/0000-00-00-welcome-to-jekyll.markdown.erb` (tanggal YAML invalid). Perbaikan: tambah `vendor` dan `.bundle` ke `exclude:` di `_config.yml`. Build lokal memakai Docker (`ruby:3.2`) tidak terdampak karena gem terpasang di path sistem, bukan `vendor/bundle`.
 
 ---
 
@@ -465,12 +465,13 @@ Diperbarui November 2026. Verifikasi ulang sebelum mengklaim sesuatu sudah beres
 - Overflow horizontal: `overflow-wrap` global dan `pre` yang bisa di-scroll.
 - 14 aset mati dihapus; avatar punya `alt`; gambar about sudah 1400x1400 (198 KB).
 - Build lokal reproducible, `timezone: Asia/Jakarta`, README ditulis ulang, `AGENTS.md` di-exclude.
+- CI hijau: `vendor/` dan `.bundle/` di-exclude dari build.
 
 ### Sisa masalah
 
 | Prioritas | Masalah | Lokasi |
 |---|---|---|
-| P1 | CI `.github/workflows/build.yml` selalu gagal di langkah build; penyebab belum diketahui karena log butuh token | `.github/workflows/` |
+| P3 | CI sebelumnya merah karena Jekyll memproses `vendor/bundle`; sudah diperbaiki dengan menambah `vendor` dan `.bundle` ke `exclude:` | `_config.yml` |
 | P2 | +/-55 gambar masih hotlink ke situs lain (docker.com, i.ibb.co, ResearchGate, SDX Central) | `_posts/*` |
 | P2 | Tidak ada `og:image` 1200x630; fallback ke avatar | `_includes/head.html` |
 | P2 | Kontras tautan `#008AFF` sekitar 3,45:1, di bawah WCAG AA 4,5:1 | `_config.yml`, `css/main.css` |
@@ -535,7 +536,7 @@ Untuk deploy:
 
 Fase 1-3 sudah dijalankan: perbaikan P1, SEO/aksesibilitas, build reproducible, dan CI build-only. Urutan yang tersisa:
 
-1. Hijaukan CI: baca log run, perbaiki penyebabnya, baru pasang badge di README.
+1. CI sudah hijau; badge build bisa dipasang di README bila diinginkan.
 2. Ganti +/-55 hotlink gambar dengan salinan lokal di `img/<topik>/`.
 3. Tambah `og:image` 1200x630 dan perbaiki kontras tautan.
 4. Evaluasi jQuery/Bootstrap 3 menuju JS modern, satu paket per perubahan.
