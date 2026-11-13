@@ -13,14 +13,14 @@ Blog pribadi **Priyagung Yogi** — catatan digital forensics, jaringan komputer
 | Konten | Markdown + YAML front matter | Satu file per artikel di `_posts/`, nama `YYYY-MM-DD-slug.md` |
 | Generator | Jekyll 3.10.0 | Versi yang dipakai build GitHub Pages, dikunci lewat gem `github-pages` 233 |
 | Templating | Liquid | Layout di `_layouts/`, komponen di `_includes/` |
-| Tema | Fork Beautiful Jekyll | Generasi 2018, dimodifikasi; lisensi MIT, kredit footer dipertahankan |
-| Styling | CSS | `css/main.css` diproses Liquid, warna diambil dari `_config.yml` |
-| Interaksi | JavaScript vanilla | `js/main.js` untuk navbar dan header image, tanpa framework |
+| Tema | Fork Beautiful Jekyll | Generasi 2016–2018, dimodifikasi; lisensi MIT, kredit footer dipertahankan |
+| Styling | Bootstrap 3 + CSS kustom | `css/main.css` diproses Liquid (warna dari `_config.yml`); Font Awesome 4.6 dan Google Fonts dari CDN |
+| Interaksi | jQuery 1.11.2 + Bootstrap 3 JS | `js/main.js` untuk navbar dan header image; tanpa bundler JS |
 | Plugin | `jekyll-paginate`, `jekyll-sitemap` | 5 artikel per halaman; RSS dibuat manual di `feed.xml` |
 | Build & hosting | GitHub Pages | Build native dari branch `master`, tanpa staging |
-| CI | GitHub Actions | Build-only: `jekyll build --strict_front_matter` plus pemeriksaan HTML |
+| CI | GitHub Actions | Build-only: `jekyll build --strict_front_matter` plus 4 pemeriksaan HTML. Run terakhir masih merah dan sedang ditelusuri |
 | Preview lokal | Bundler + Docker | Image `ruby:3.2`, gem yang sama dengan produksi |
-| Analytics | Google Analytics 4 | `gtag.js` di `_includes/head.html` |
+| Analytics | Google Analytics 4 | `gtag.js` di `_includes/analytics.html`, dimuat dari `head.html` |
 | Permalink | `/:year-:month-:day-:title/` | URL satu segmen, contoh `/2025-12-25-etherchannel-networks/` |
 
 ## Arsitektur dan alur publikasi
@@ -49,6 +49,8 @@ Buka <http://localhost:4000>. Tanpa Docker:
 bundle install
 bundle exec jekyll serve
 ```
+
+`Gemfile.lock` hanya memuat platform `x86_64-linux`. Di macOS Apple Silicon jalankan `bundle lock --add-platform arm64-darwin` lebih dulu, atau pakai Docker saja.
 
 ## Struktur repositori
 
@@ -82,4 +84,7 @@ Panduan lengkap ada di [AGENTS.md](AGENTS.md).
 
 ## Lisensi
 
-Konten artikel © Priyagung Yogi. Tema berbasis [Beautiful Jekyll](https://github.com/daattali/beautiful-jekyll) karya Dean Attali, lisensi MIT.
+Dua cakupan yang berbeda:
+
+- **Kode dan tema** — [Beautiful Jekyll](https://github.com/daattali/beautiful-jekyll) karya Dean Attali, lisensi MIT, berlaku untuk layout, include, CSS, dan JavaScript. Teks lisensi lengkap ada di [LICENSE](LICENSE).
+- **Tulisan** — seluruh teks artikel di `_posts/` dan halaman profil adalah hak cipta Priyagung Yogi. Tidak ikut lisensi MIT; hubungi penulis bila ingin mengutip ulang dalam jumlah besar. Kutipan pendek dengan tautan balik tidak masalah.
