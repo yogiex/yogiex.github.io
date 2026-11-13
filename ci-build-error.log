@@ -1,0 +1,11 @@
+Configuration file: /home/runner/work/yogiex.github.io/yogiex.github.io/_config.yml
+To use retry middleware with Faraday v2.0+, install `faraday-retry` gem
+            Source: /home/runner/work/yogiex.github.io/yogiex.github.io
+       Destination: /home/runner/work/yogiex.github.io/yogiex.github.io/_site
+ Incremental build: disabled. Enable with --incremental
+      Generating... 
+[31m             Error: could not read file /home/runner/work/yogiex.github.io/yogiex.github.io/vendor/bundle/ruby/3.2.0/gems/jekyll-3.10.0/lib/site_template/_posts/0000-00-00-welcome-to-jekyll.markdown.erb: Invalid date '<%= Time.now.strftime('%Y-%m-%d %H:%M:%S %z') %>': Document 'vendor/bundle/ruby/3.2.0/gems/jekyll-3.10.0/lib/site_template/_posts/0000-00-00-welcome-to-jekyll.markdown.erb' does not have a valid date in the YAML front matter.[0m
+[31m             ERROR: YOUR SITE COULD NOT BE BUILT:[0m
+[31m                    ------------------------------------[0m
+[31m                    Invalid date '<%= Time.now.strftime('%Y-%m-%d %H:%M:%S %z') %>': Document 'vendor/bundle/ruby/3.2.0/gems/jekyll-3.10.0/lib/site_template/_posts/0000-00-00-welcome-to-jekyll.markdown.erb' does not have a valid date in the YAML front matter.[0m
+EXIT_CODE=1
