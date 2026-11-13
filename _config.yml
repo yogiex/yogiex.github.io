@@ -162,6 +162,8 @@ exclude:
   - Vagrantfile
   - .opencode
   - .agents
+  - vendor
+  - .bundle
 
 # prose.io config
 prose:
