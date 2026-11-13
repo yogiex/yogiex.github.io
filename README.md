@@ -1,90 +1,150 @@
 # yogiex.github.io
 
-Blog pribadi **Priyagung Yogi** — catatan digital forensics, jaringan komputer, Linux, container, dan CTF. Situs statis yang dibangun dengan Jekyll dan dipublikasikan langsung dari branch `master` melalui GitHub Pages.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Jekyll](https://img.shields.io/badge/Jekyll-3.10-CC0000?logo=jekyll&logoColor=white)](https://jekyllrb.com/)
+[![Ruby](https://img.shields.io/badge/Ruby-3.2-CC342D?logo=ruby&logoColor=white)](https://www.ruby-lang.org/)
+[![Hosted on GitHub Pages](https://img.shields.io/badge/Hosted-GitHub%20Pages-222222?logo=github&logoColor=white)](https://pages.github.com/)
 
-- Situs: <https://yogiex.github.io>
-- Bahasa konten: Indonesia
-- Tanpa komentar, tanpa database, tanpa server aplikasi
+> Personal blog of **Priyagung Yogi** — notes on digital forensics, computer
+> networking, Linux, containers, and CTF. A static Jekyll site published
+> directly from `master` via GitHub Pages, with no database and no application
+> server.
+
+**Live:** [yogiex.github.io](https://yogiex.github.io) · **Content language:** Indonesian
+
+## Contents
+
+- [Highlights](#highlights)
+- [Tech stack](#tech-stack)
+- [Architecture](#architecture)
+- [Getting started](#getting-started)
+- [Project structure](#project-structure)
+- [Writing a post](#writing-a-post)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
+
+## Highlights
+
+- Articles on networking, Linux, containers, and CTF, written in Indonesian.
+- Customized fork of [Beautiful Jekyll](https://github.com/daattali/beautiful-jekyll), with SEO and accessibility improvements (meta descriptions, Open Graph, JSON-LD, sitemap, `lang="id"`, keyboard-friendly navigation).
+- Reproducible local build: `Gemfile` pins `github-pages ~> 233` (Jekyll 3.10) and a `ruby:3.2` Docker image mirrors production.
+- Build-only CI (`.github/workflows/build.yml`) runs `jekyll build --strict_front_matter` plus four HTML checks.
+- Google Analytics 4, RSS feed, and tag index out of the box.
 
 ## Tech stack
 
-| Lapisan | Teknologi | Keterangan |
+| Layer | Technology | Notes |
 |---|---|---|
-| Konten | Markdown + YAML front matter | Satu file per artikel di `_posts/`, nama `YYYY-MM-DD-slug.md` |
-| Generator | Jekyll 3.10.0 | Versi yang dipakai build GitHub Pages, dikunci lewat gem `github-pages` 233 |
-| Templating | Liquid | Layout di `_layouts/`, komponen di `_includes/` |
-| Tema | Fork Beautiful Jekyll | Generasi 2016–2018, dimodifikasi; lisensi MIT, kredit footer dipertahankan |
-| Styling | Bootstrap 3 + CSS kustom | `css/main.css` diproses Liquid (warna dari `_config.yml`); Font Awesome 4.6 dan Google Fonts dari CDN |
-| Interaksi | jQuery 1.11.2 + Bootstrap 3 JS | `js/main.js` untuk navbar dan header image; tanpa bundler JS |
-| Plugin | `jekyll-paginate`, `jekyll-sitemap` | 5 artikel per halaman; RSS dibuat manual di `feed.xml` |
-| Build & hosting | GitHub Pages | Build native dari branch `master`, tanpa staging |
-| CI | GitHub Actions | Build-only: `jekyll build --strict_front_matter` plus 4 pemeriksaan HTML. Run terakhir masih merah dan sedang ditelusuri |
-| Preview lokal | Bundler + Docker | Image `ruby:3.2`, gem yang sama dengan produksi |
-| Analytics | Google Analytics 4 | `gtag.js` di `_includes/analytics.html`, dimuat dari `head.html` |
-| Permalink | `/:year-:month-:day-:title/` | URL satu segmen, contoh `/2025-12-25-etherchannel-networks/` |
+| Content | Markdown + YAML front matter | One file per post in `_posts/`, named `YYYY-MM-DD-slug.md` |
+| Generator | Jekyll 3.10.0 | Pinned via `gem "github-pages", "~> 233"` |
+| Templating | Liquid | Layouts in `_layouts/`, partials in `_includes/` |
+| Theme | Fork of Beautiful Jekyll | 2016-2018 generation, heavily modified; MIT license, footer credit retained |
+| Styling | Bootstrap 3 + custom CSS | `css/main.css` is processed by Liquid (colors from `_config.yml`); Font Awesome 4.6 and Google Fonts from CDN |
+| Interaction | jQuery 1.11.2 + Bootstrap 3 JS | `js/main.js` for navbar and header image; no JS bundler |
+| Plugins | `jekyll-paginate`, `jekyll-sitemap` | 5 posts per page; RSS is hand-written in `feed.xml` |
+| Build & hosting | GitHub Pages | Native build from `master`, no staging environment |
+| CI | GitHub Actions | Build-only: `jekyll build --strict_front_matter` plus four HTML checks |
+| Local preview | Bundler + Docker | Image `ruby:3.2`, same gems as production |
+| Analytics | Google Analytics 4 | `gtag.js` in `_includes/analytics.html`, loaded from `head.html` |
+| Permalink | `/:year-:month-:day-:title/` | Single-segment URL, e.g. `/2025-12-25-etherchannel-networks/` |
 
-## Arsitektur dan alur publikasi
+## Architecture
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="diagrams/yogiex-stack-dark.png">
-  <img src="diagrams/yogiex-stack.png" alt="Diagram arsitektur yogiex.github.io: penulis menulis Markdown lalu commit ke repo GitHub, GitHub Pages mem-build dengan Jekyll 3.10 menjadi situs statis HTML/CSS yang dibaca browser; build lokal dan GitHub Actions sebagai jalur pengembangan, Google Analytics 4 mengumpulkan metrik." width="100%">
+  <img src="diagrams/yogiex-stack.png" alt="Architecture of yogiex.github.io: an author writes Markdown, commits to the GitHub repository, GitHub Pages builds it with Jekyll 3.10 into a static HTML/CSS site served to browsers. Local builds and GitHub Actions cover development; Google Analytics 4 collects metrics." width="100%">
 </picture>
 
-Garis biru adalah alur publikasi, garis putus-putus adalah jalur pengembangan dan pengukuran. Sumber diagram ada di `diagrams/yogiex-stack.html` (self-contained, punya toggle tema gelap).
+Blue lines are the publish path; dashed lines are development and measurement. Source: `diagrams/yogiex-stack.html` (self-contained, with a dark-mode toggle).
 
-Push ke `master` langsung menjadi produksi. Tidak ada environment staging, jadi perubahan berisiko sebaiknya dipreview lokal lebih dulu.
+Every push to `master` goes straight to production. There is no staging environment, so risky changes should be previewed locally first.
 
-## Menjalankan secara lokal
+## Getting started
 
-Prasyarat: Docker (disarankan), atau Ruby 3.x dengan Bundler.
+### Prerequisites
+
+- Docker (recommended), or Ruby 3.2 with Bundler 2.4.
+
+### Run locally
 
 ```bash
 docker build -t yogiex-preview .
 docker run --rm -p 4000:4000 -v "$PWD:/srv/jekyll" yogiex-preview
 ```
 
-Buka <http://localhost:4000>. Tanpa Docker:
+Open <http://localhost:4000>. Without Docker:
 
 ```bash
 bundle install
 bundle exec jekyll serve
 ```
 
-`Gemfile.lock` hanya memuat platform `x86_64-linux`. Di macOS Apple Silicon jalankan `bundle lock --add-platform arm64-darwin` lebih dulu, atau pakai Docker saja.
+`Gemfile.lock` only ships the `x86_64-linux` platform. On Apple Silicon, add the platform first:
 
-## Struktur repositori
-
-```text
-_config.yml        Konfigurasi situs: navigasi, warna, analytics, permalink
-index.html         Halaman daftar artikel + paginator
-aboutme.md         Halaman profil
-tags.html          Indeks tag
-404.html           Halaman 404
-feed.xml           RSS manual
-_layouts/          Kerangka HTML (base, page, post, default)
-_includes/         Potongan template (head, nav, header, footer, analytics)
-_posts/            Artikel Markdown
-img/               Gambar artikel, dikelompokkan per topik
-css/ js/           Aset tampilan dan interaksi
-diagrams/          Diagram arsitektur (sumber HTML + PNG)
-.github/workflows/ CI build-only
+```bash
+bundle lock --add-platform arm64-darwin && bundle install
 ```
 
-## Menulis artikel
+### Validate the build
 
-Aturan singkat yang wajib diikuti:
+```bash
+bundle exec jekyll build --strict_front_matter --trace
+```
 
-- `subtitle` 80–160 karakter — menjadi `<meta name="description">`.
-- Gambar memakai path absolut `/img/<topik>/nama-file.png`, bukan hotlink.
-- Heading di body mulai dari `##`; header halaman sudah menghasilkan `<h1>`.
-- `bigimg` berupa array; hapus key-nya bila tidak ada gambar header, jangan diisi string kosong.
-- Tanggal di nama file tidak boleh melewati hari ini.
+This command passes from `HEAD` as of November 2026, both with the cached gems and a clean `bundle install`.
 
-Panduan lengkap ada di [AGENTS.md](AGENTS.md).
+## Project structure
 
-## Lisensi
+```text
+_config.yml        Site config: navigation, colors, analytics, permalink
+index.html         Post list + paginator
+aboutme.md         Profile page
+tags.html          Tag index
+404.html           404 page
+feed.xml           Hand-written RSS
+_layouts/          HTML shells (base, page, post, default)
+_includes/         Template partials (head, nav, header, footer, analytics)
+_posts/            Markdown articles
+img/               Article images, grouped by topic
+css/ js/           Styles and interaction
+.github/workflows/ Build-only CI
+diagrams/          Architecture diagram (HTML + PNG, excluded from build)
+```
 
-Dua cakupan yang berbeda:
+Detailed conventions live in [AGENTS.md](AGENTS.md).
 
-- **Kode dan tema** — [Beautiful Jekyll](https://github.com/daattali/beautiful-jekyll) karya Dean Attali, lisensi MIT, berlaku untuk layout, include, CSS, dan JavaScript. Teks lisensi lengkap ada di [LICENSE](LICENSE).
-- **Tulisan** — seluruh teks artikel di `_posts/` dan halaman profil adalah hak cipta Priyagung Yogi. Tidak ikut lisensi MIT; hubungi penulis bila ingin mengutip ulang dalam jumlah besar. Kutipan pendek dengan tautan balik tidak masalah.
+## Writing a post
+
+Short version of the rules:
+
+- `subtitle` of 80-160 characters becomes the `<meta name="description">`.
+- Images use absolute paths `/img/<topic>/file.png`; no hotlinks.
+- Body headings start at `##`; the page header already produces the `<h1>`.
+- `bigimg` is an array; remove the key entirely when there is no header image.
+- File dates must not be in the future.
+
+Full writing standard (structure, tone, code blocks, images, SEO, editorial checklist) is in [AGENTS.md](AGENTS.md).
+
+## Contributing
+
+This is a personal blog, but fixes and suggestions are welcome:
+
+1. Fork and create a branch.
+2. Preview locally with the Docker command above.
+3. Keep changes small and focused; do not reformat unrelated files.
+4. Open a pull request describing what changed and why.
+
+Do not push directly to `master` without previewing first — every push becomes production.
+
+## License
+
+Two scopes, two terms:
+
+- **Code and theme** — based on [Beautiful Jekyll](https://github.com/daattali/beautiful-jekyll) by Dean Attali, MIT license. Applies to layouts, includes, CSS, and JavaScript. Full text in [LICENSE](LICENSE).
+- **Writing** — all article text in `_posts/` and the profile page is copyright Priyagung Yogi. Not covered by the MIT license; contact the author before large-scale reuse. Short quotes with a link back are fine.
+
+## Acknowledgments
+
+- [Dean Attali](https://github.com/daattali) for Beautiful Jekyll.
+- [Jekyll](https://jekyllrb.com/) and [GitHub Pages](https://pages.github.com/) for the build and hosting.
