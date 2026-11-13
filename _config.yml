@@ -152,6 +152,7 @@ exclude:
   - AGENTS.md
   - CHANGELOG.md
   - CNAME
+  - diagrams
   - Dockerfile
   - Gemfile
   - Gemfile.lock

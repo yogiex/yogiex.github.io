@@ -23,17 +23,14 @@ Blog pribadi **Priyagung Yogi** — catatan digital forensics, jaringan komputer
 | Analytics | Google Analytics 4 | `gtag.js` di `_includes/head.html` |
 | Permalink | `/:year-:month-:day-:title/` | URL satu segmen, contoh `/2025-12-25-etherchannel-networks/` |
 
-## Alur publikasi
+## Arsitektur dan alur publikasi
 
-```text
-_posts/*.md  +  _layouts/  +  _includes/  +  css/
-                  │
-                  ▼
-        Jekyll 3.10 (GitHub Pages)
-                  │
-                  ▼
-              _site/  ──►  https://yogiex.github.io
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="diagrams/yogiex-stack-dark.png">
+  <img src="diagrams/yogiex-stack.png" alt="Diagram arsitektur yogiex.github.io: penulis menulis Markdown lalu commit ke repo GitHub, GitHub Pages mem-build dengan Jekyll 3.10 menjadi situs statis HTML/CSS yang dibaca browser; build lokal dan GitHub Actions sebagai jalur pengembangan, Google Analytics 4 mengumpulkan metrik." width="100%">
+</picture>
+
+Garis biru adalah alur publikasi, garis putus-putus adalah jalur pengembangan dan pengukuran. Sumber diagram ada di `diagrams/yogiex-stack.html` (self-contained, punya toggle tema gelap).
 
 Push ke `master` langsung menjadi produksi. Tidak ada environment staging, jadi perubahan berisiko sebaiknya dipreview lokal lebih dulu.
 
@@ -67,6 +64,7 @@ _includes/         Potongan template (head, nav, header, footer, analytics)
 _posts/            Artikel Markdown
 img/               Gambar artikel, dikelompokkan per topik
 css/ js/           Aset tampilan dan interaksi
+diagrams/          Diagram arsitektur (sumber HTML + PNG)
 .github/workflows/ CI build-only
 ```
 
