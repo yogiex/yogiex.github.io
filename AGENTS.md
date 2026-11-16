@@ -61,7 +61,7 @@ _data/SocialNetworks.yml Mapping ikon sosial
 
 Gemfile / Gemfile.lock   Pin github-pages ~> 233 (Jekyll 3.10) untuk build lokal
 Dockerfile               Preview lokal: ruby:3.2 + jekyll serve di port 4000
-.github/workflows/build.yml  CI build-only + 4 pemeriksaan HTML
+.github/workflows/build.yml  CI build-only + 5 pemeriksaan HTML
 diagrams/                Diagram arsitektur (HTML + PNG), di-exclude dari build
 ```
 
@@ -97,7 +97,7 @@ _site/  →  https://yogiex.github.io
   Hasilnya URL **satu segmen**, contoh `/2025-12-25-etherchannel-networks/`.
   Jangan mengubah pola ini tanpa mengonversi semua path gambar relatif (`../img/...`, `img/...`) menjadi absolut `/img/...`, karena path relatif saat ini bekerja karena URL hanya satu segmen.
 - `jekyll-paginate` dan `jekyll-sitemap` aktif. `feed.xml` dibuat manual; `jekyll-feed` tidak dipakai.
-- Tidak ada test suite atau linter. CI ada: `.github/workflows/build.yml` menjalankan `bundle exec jekyll build --strict_front_matter` lalu 4 pemeriksaan HTML (URL satu-slash, `url(undefined)`, meta description, jumlah `<h1>`). Workflow hijau per November 2026 setelah `vendor/` dan `.bundle/` di-exclude.
+- Tidak ada test suite atau linter. CI ada: `.github/workflows/build.yml` menjalankan `bundle exec jekyll build --strict_front_matter` lalu 5 pemeriksaan (tidak ada `vendor/` di `_site`, URL satu-slash, `url(undefined)`, meta description, jumlah `<h1>`). Workflow hijau per November 2026 setelah `vendor/` dan `.bundle/` di-exclude.
 - `AGENTS.md` di-exclude dari build agar tidak ikut terpublikasi sebagai file statis.
 
 ---

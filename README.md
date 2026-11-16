@@ -30,7 +30,7 @@
 - Articles on networking, Linux, containers, and CTF, written in Indonesian.
 - Customized fork of [Beautiful Jekyll](https://github.com/daattali/beautiful-jekyll), with SEO and accessibility improvements (meta descriptions, Open Graph, JSON-LD, sitemap, `lang="id"`, keyboard-friendly navigation).
 - Reproducible local build: `Gemfile` pins `github-pages ~> 233` (Jekyll 3.10) and a `ruby:3.2` Docker image mirrors production.
-- Build-only CI (`.github/workflows/build.yml`) runs `jekyll build --strict_front_matter` plus four HTML checks.
+- Build-only CI (`.github/workflows/build.yml`) runs `jekyll build --strict_front_matter` plus five guards (no `vendor/` in output, no one-slash URLs, no `url(undefined)`, meta description on every page, exactly one `<h1>` per page).
 - Google Analytics 4, RSS feed, and tag index out of the box.
 
 ## Tech stack
@@ -45,7 +45,7 @@
 | Interaction | jQuery 1.11.2 + Bootstrap 3 JS | `js/main.js` for navbar and header image; no JS bundler |
 | Plugins | `jekyll-paginate`, `jekyll-sitemap` | 5 posts per page; RSS is hand-written in `feed.xml` |
 | Build & hosting | GitHub Pages | Native build from `master`, no staging environment |
-| CI | GitHub Actions | Build-only, green: `jekyll build --strict_front_matter` plus four HTML checks |
+| CI | GitHub Actions | Build-only, green: `jekyll build --strict_front_matter` plus five guards (vendor output, one-slash URLs, `url(undefined)`, meta description, single `<h1>`) |
 | Local preview | Bundler + Docker | Image `ruby:3.2`, same gems as production |
 | Analytics | Google Analytics 4 | `gtag.js` in `_includes/analytics.html`, loaded from `head.html` |
 | Permalink | `/:year-:month-:day-:title/` | Single-segment URL, e.g. `/2025-12-25-etherchannel-networks/` |
