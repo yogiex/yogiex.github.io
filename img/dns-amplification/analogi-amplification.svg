@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="300" viewBox="0 0 800 300">
+  <rect x="0" y="0" width="800" height="300" fill="#f7fafc"/>
+
+  <!-- Penyerang -->
+  <rect x="16" y="80" width="150" height="130" rx="10" ry="10" fill="#ffffff" stroke="#2b6cb0" stroke-width="3"/>
+  <circle cx="91" cy="120" r="11" fill="none" stroke="#2b6cb0" stroke-width="3"/>
+  <path d="M72,158 q19,-22 38,0" fill="none" stroke="#2b6cb0" stroke-width="3"/>
+  <text x="91" y="190" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="bold" fill="#1a202c" text-anchor="middle">Penyerang</text>
+
+  <!-- amplop -->
+  <rect x="200" y="122" width="56" height="40" rx="3" ry="3" fill="#ffffff" stroke="#2b6cb0" stroke-width="3"/>
+  <path d="M200,124 L228,148 L256,124" fill="none" stroke="#2b6cb0" stroke-width="3"/>
+  <text x="228" y="196" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#2b6cb0" text-anchor="middle">IP korban</text>
+
+  <line x1="170" y1="140" x2="196" y2="140" stroke="#2b6cb0" stroke-width="3"/>
+  <path d="M196,132 L206,140 L196,148 z" fill="#2b6cb0"/>
+  <line x1="258" y1="140" x2="292" y2="140" stroke="#2b6cb0" stroke-width="3"/>
+  <path d="M292,132 L302,140 L292,148 z" fill="#2b6cb0"/>
+
+  <!-- Server DNS terbuka -->
+  <rect x="304" y="60" width="200" height="170" rx="10" ry="10" fill="#ffffff" stroke="#2b6cb0" stroke-width="3"/>
+  <path d="M304,70 a10,10 0 0 1 10,-10 h180 a10,10 0 0 1 10,10 v26 h-200 z" fill="#2b6cb0"/>
+  <text x="404" y="150" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="bold" fill="#1a202c" text-anchor="middle">Server DNS</text>
+  <text x="404" y="186" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#2b6cb0" text-anchor="middle">terbuka</text>
+
+  <!-- respons besar -->
+  <line x1="508" y1="140" x2="588" y2="140" stroke="#c53030" stroke-width="12"/>
+  <path d="M588,120 L614,140 L588,160 z" fill="#c53030"/>
+  <text x="548" y="186" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="bold" fill="#c53030" text-anchor="middle">paket besar</text>
+
+  <!-- Rumah korban -->
+  <rect x="630" y="86" width="146" height="120" fill="#ffffff" stroke="#c53030" stroke-width="3"/>
+  <path d="M616,90 L703,30 L790,90" fill="none" stroke="#c53030" stroke-width="3"/>
+  <rect x="678" y="150" width="50" height="56" fill="#fde8e8" stroke="#c53030" stroke-width="3"/>
+  <text x="703" y="122" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="bold" fill="#c53030" text-anchor="middle">Korban</text>
+
+  <!-- paket -->
+  <g fill="#fff5f5" stroke="#c53030" stroke-width="3">
+    <rect x="628" y="220" width="38" height="32"/>
+    <rect x="672" y="220" width="38" height="32"/>
+    <rect x="716" y="220" width="38" height="32"/>
+  </g>
+</svg>

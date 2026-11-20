@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="320" viewBox="0 0 800 320">
+  <rect x="0" y="0" width="800" height="320" fill="#f7fafc"/>
+
+  <!-- Penyerang -->
+  <rect x="16" y="100" width="150" height="120" rx="10" ry="10" fill="#ffffff" stroke="#2b6cb0" stroke-width="3"/>
+  <text x="91" y="152" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="bold" fill="#1a202c" text-anchor="middle">Penyerang</text>
+  <text x="91" y="184" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#4a5568" text-anchor="middle">botnet</text>
+
+  <!-- Open resolver atas -->
+  <rect x="300" y="26" width="200" height="104" rx="10" ry="10" fill="#ffffff" stroke="#2b6cb0" stroke-width="3"/>
+  <text x="400" y="64" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="bold" fill="#1a202c" text-anchor="middle">Open resolver</text>
+  <text x="400" y="96" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#4a5568" text-anchor="middle">DNS publik</text>
+
+  <!-- Open resolver bawah -->
+  <rect x="300" y="190" width="200" height="104" rx="10" ry="10" fill="#ffffff" stroke="#2b6cb0" stroke-width="3"/>
+  <text x="400" y="228" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="bold" fill="#1a202c" text-anchor="middle">Open resolver</text>
+  <text x="400" y="260" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#4a5568" text-anchor="middle">DNS publik</text>
+
+  <!-- Korban -->
+  <rect x="618" y="100" width="166" height="120" rx="10" ry="10" fill="#ffffff" stroke="#c53030" stroke-width="3"/>
+  <text x="701" y="152" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="bold" fill="#1a202c" text-anchor="middle">Korban</text>
+  <text x="701" y="184" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#4a5568" text-anchor="middle">IP target</text>
+
+  <!-- permintaan palsu -->
+  <line x1="170" y1="128" x2="288" y2="78" stroke="#2b6cb0" stroke-width="3"/>
+  <path d="M288,68 L302,76 L288,86 z" fill="#2b6cb0"/>
+  <line x1="170" y1="196" x2="288" y2="242" stroke="#2b6cb0" stroke-width="3"/>
+  <path d="M288,232 L302,242 L288,250 z" fill="#2b6cb0"/>
+  <text x="226" y="72" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#2b6cb0" text-anchor="middle">IP palsu</text>
+  <text x="226" y="272" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#2b6cb0" text-anchor="middle">IP palsu</text>
+
+  <!-- respons -->
+  <line x1="504" y1="78" x2="600" y2="128" stroke="#c53030" stroke-width="9"/>
+  <path d="M600,116 L616,128 L598,138 z" fill="#c53030"/>
+  <line x1="504" y1="242" x2="600" y2="196" stroke="#c53030" stroke-width="9"/>
+  <path d="M598,186 L616,196 L600,208 z" fill="#c53030"/>
+  <text x="562" y="142" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="bold" fill="#c53030" text-anchor="middle">respons</text>
+  <text x="562" y="168" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="bold" fill="#c53030" text-anchor="middle">besar</text>
+</svg>
