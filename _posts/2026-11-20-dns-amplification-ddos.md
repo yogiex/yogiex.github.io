@@ -3,6 +3,8 @@ layout: post
 title: "DNS Amplification: Cara Serangan DDoS Memanfaatkan Server DNS"
 subtitle: "DNS amplification adalah serangan DDoS yang memakai server DNS terbuka untuk memperbesar trafik ke korban. Ini cara kerjanya, deteksi, dan pencegahannya."
 image: /img/dns-amplification/dns-amplification-thumb.webp
+bigimg:
+  - /img/dns-amplification/dns-amplification-header.jpg
 share-img: https://yogiex.github.io/img/dns-amplification/dns-amplification-social.jpg
 tags: [jaringan komputer, security, fundamental]
 ---
