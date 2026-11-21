@@ -154,10 +154,15 @@ exclude:
   - CNAME
   - diagrams
   - Dockerfile
+  - docs
+  - scripts
+  - templates
   - Gemfile
   - Gemfile.lock
   - LICENSE
+  - LIGHTHOUSE-AUDIT-2026-11-21.md
   - README.md
+  - RENCANA-OPTIMASI-2026-11-21.md
   - SECURITY-AUDIT-2026-11-12.md
   - Vagrantfile
   - .opencode

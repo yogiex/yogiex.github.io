@@ -1,0 +1,26 @@
+# Daftar tag resmi blog.
+# Sumber tunggal untuk validator (scripts/check-post.mjs) dan untuk manusia.
+# Saat menambah tag: huruf kecil, deskriptif, dan pastikan dipakai minimal 2 artikel.
+# Tag historis "WGTIK" masih huruf besar; normalisasi saat artikelnya disentuh lagi.
+
+- basic
+- cloud computing
+- container
+- contributing
+- devops
+- docker
+- event
+- fundamental
+- github
+- gitlab
+- iot
+- jaringan komputer
+- kernel
+- kuliah
+- linux
+- open source software
+- openstack
+- operating system
+- php
+- security
+- version control system

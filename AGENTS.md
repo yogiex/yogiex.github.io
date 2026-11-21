@@ -58,6 +58,13 @@ css/main.css             CSS utama; diproses Liquid (warna dari _config.yml)
 css/pygment_highlights.css  Diimpor dari main.css
 js/main.js               Navbar, big image, interaksi kecil
 _data/SocialNetworks.yml Mapping ikon sosial
+_data/tags.yml           Daftar tag resmi (dipakai validator)
+
+docs/artikel/FORMAT.md   Kontrak penulisan artikel (schema + kerangka body)
+docs/artikel/STANDAR.md  Standar editorial, rubrik, alur review
+templates/post.md        Kerangka artikel lengkap, siap salin
+templates/post-minimal.md  Varian pendek
+scripts/check-post.mjs   Validator 12 aturan artikel (A1-A12)
 
 Gemfile / Gemfile.lock   Pin github-pages ~> 233 (Jekyll 3.10) untuk build lokal
 Dockerfile               Preview lokal: ruby:3.2 + jekyll serve di port 4000
@@ -150,216 +157,45 @@ Per November 2026 perintah ini **lulus** dari HEAD, baik memakai gem dari image 
 
 ---
 
-## 5. Konvensi Menulis Artikel
+## 5. Menulis Artikel
 
-Buat file `_posts/YYYY-MM-DD-slug.md` dengan bulan dan tanggal **dua digit** (contoh: `2026-01-05-judul-artikel.md`, bukan `2026-1-5-...`).
+Kontrak teknis: [docs/artikel/FORMAT.md](docs/artikel/FORMAT.md). Penilaian isi: [docs/artikel/STANDAR.md](docs/artikel/STANDAR.md). Kerangka siap pakai: [templates/post.md](templates/post.md) atau [templates/post-minimal.md](templates/post-minimal.md).
 
-Template front matter:
+Alur: salin template -> ganti isi -> `node scripts/check-post.mjs _posts/<file>.md` sampai exit 0.
 
-```yaml
----
-layout: post
-title: "Judul Artikel"
-subtitle: "Ringkasan satu kalimat untuk meta description"
-image: /img/topik/thumbnail.png
-bigimg:
-  - /img/topik/header.jpg
-tags: [jaringan komputer, linux]
----
-```
+### Aturan (ID dipakai validator)
 
-Aturan:
+| ID | Aturan | Level | Dicek |
+|---|---|---|---|
+| A1 | `_posts/YYYY-MM-DD-slug.md`, tanggal dua digit, tidak future-dated | FAIL | script |
+| A2 | Field wajib `layout/title/subtitle/image/tags`, urutan baku | FAIL | script |
+| A3 | `title` 45-65 karakter | WARN | script |
+| A4 | `subtitle` 80-160 karakter (jadi meta description) | WARN | script |
+| A5 | `image` file lokal `/img/...` dan benar-benar ada | FAIL | script |
+| A6 | `bigimg` array valid; hapus key bila tidak ada | FAIL | script |
+| A7 | `tags` huruf kecil, dari `_data/tags.yml`, tanpa duplikat | FAIL/WARN | script |
+| A8 | Heading body mulai `##`, bukan `#` | FAIL | script |
+| A9 | Gambar punya `alt`, path absolut, file ada; tanpa hotlink | FAIL/WARN | script |
+| A10 | Tanpa field `comments` | FAIL | script |
+| A11 | Referensi memakai HTTPS | WARN | script |
+| A12 | Ringkasan di awal, minimal satu `##`, bahasa dan alur sesuai STANDAR | WARN | review |
 
-- `subtitle` wajib (80–160 karakter). Tanpa subtitle, halaman tidak punya `<meta name="description">`.
-- `image` dipakai sebagai thumbnail di index dan sebagai `og:image` saat post dibagikan. Avatar navbar memakai `site.avatar`, bukan `page.image`. Gunakan gambar kecil/menarik, bukan screenshot panjang.
-- `bigimg` adalah array. Jika tidak punya gambar header, **hapus key `bigimg` sepenuhnya**. Jangan menulis `bigimg: - ""` — nilai kosong menyebabkan request `/undefined` dan header rusak.
-- Path gambar **selalu absolut** dari root, contoh `/img/jaringan-komputer/topologi.png`. Hindari `../img/...` dan `img/...`.
-- Jangan hotlink gambar dari situs lain. Banyak hotlink sudah mati (docker.com, ResearchGate, SDX Central, i.ibb.co). Unduh ke `img/<topik>/` dan optimalkan.
-- Teks `alt` wajib diisi: `![Topologi star](/img/...png)`, jangan `![](...)`.
-- Ukuran gambar: usahakan lebar maksimal ±1600 px dan ukuran <300 KB. Konversi screenshot ke WebP/JPEG bila memungkinkan. Jangan menambahkan gambar >1 MB tanpa alasan.
-- Heading di dalam artikel mulai dari `##`, bukan `#`. Header halaman sudah menghasilkan `<h1>`; `#` di body menciptakan `<h1>` ganda.
-- Tag: huruf kecil, tanpa koma di akhir, tanpa elemen kosong. Gunakan tag yang sudah ada agar indeks tag tidak makin terfragmentasi. Contoh tag yang dipakai: `jaringan komputer`, `linux`, `docker`, `container`, `devops`, `fundamental`, `basic`, `operating system`, `github`.
-- **Jangan menambahkan komentar.** Fitur komentar sudah dihapus dari situs; jangan menambahkan field `comments` atau sistem komentar baru tanpa persetujuan.
-- Tanggal di nama file tidak boleh melewati hari ini. Jekyll tidak mem-publish post yang tanggalnya future-dated.
-- Slug: huruf kecil, tanda hubung, tanpa spasi/karakter khusus, idealnya 3–7 kata. Contoh: `2026-11-09-dasar-docker-compose.md`.
-- Bahasa dan gaya mengikuti artikel yang ada (Indonesia informal). Untuk **postingan baru** atau saat diminta, terapkan **Standar Penulisan Profesional** di bawah. Untuk artikel lama, jangan menulis ulang suara/opini penulis tanpa izin.
-- Jika menambah referensi, gunakan URL HTTPS dan cek statusnya. Jangan menyalin URL panjang tanpa kemungkinan wrap; gunakan teks link yang lebih pendek.
+Catatan level: FAIL menggagalkan commit/CI; WARN hanya dilaporkan. Artikel bertanggal sebelum 2026-01-01 ditandai `[legacy]` dan tidak memblokir, kecuali dijalankan dengan `--strict`.
 
-### Standar Penulisan Profesional
+### Hal yang wajib diingat tanpa membaca dokumen
 
-Postingan baru harus lolos standar ini. Profesional bukan berarti formal kaku: tetap personal dan mudah dibaca, tetapi akurat, terstruktur, dan bisa dipertanggungjawabkan.
+- Judul artikel adalah `<h1>` halaman; body tidak boleh punya `#`.
+- `bigimg` kosong menghasilkan request `/undefined`; hapus key-nya.
+- Path gambar harus `/img/...`; `../img/...` hanya selamat karena URL satu segmen.
+- Tag dengan spasi di-slugify untuk anchor (`#jaringan-komputer`).
+- Situs tidak memakai komentar; jangan menambah field atau layanan komentar.
+- Artikel lama: perbaiki kesalahan teknis saja, jangan menulis ulang suara penulis.
 
-#### Prinsip dasar
-
-1. **Akurasi sebelum gaya.** Jangan mengorbankan kebenaran teknis demi kalimat yang terdengar bagus.
-2. **Satu artikel, satu tujuan.** Tentukan di awal: mengajari, menjelaskan konsep, mencatat lab, atau memberi opini.
-3. **Tulis untuk pembaca nyata.** Sebutkan siapa target pembaca, apa yang sudah harus diketahui, dan hasil yang didapat setelah membaca.
-4. **Tunjukkan, jangan hanya mengklaim.** Sertakan perintah, konfigurasi, output, atau bukti pengujian.
-5. **Bedakan fakta, pengalaman, dan opini.** Jangan menyamarkan opini sebagai fakta.
-6. **Hormati keamanan dan privasi.** Sensor IP publik, token, email, dan data sensitif.
-
-#### Struktur wajib
-
-- **Judul** 45–65 karakter, spesifik, tanpa clickbait/ALL CAPS. Sebut teknologi dan manfaatnya. Contoh: “Membuat Web Service NGINX dengan Docker”.
-- **Subtitle** satu kalimat, 80–160 karakter, menjelaskan hasil yang didapat pembaca. Subtitle ini menjadi meta description.
-- **Pembuka** 2–4 paragraf pendek: masalah/konteks, target pembaca, prasyarat, dan cakupan artikel. Tanpa basa-basi panjang.
-- **Daftar isi** untuk artikel >800 kata atau >4 bagian utama.
-- **Isi** memakai `##` dan `###`, satu ide per bagian, paragraf 2–5 kalimat.
-- **Penutup** berisi ringkasan, batasan, dan langkah berikutnya.
-- **Referensi** minimal satu sumber resmi (dokumentasi vendor, RFC, man page) untuk klaim teknis.
-
-#### Sesuaikan dengan jenis artikel
-
-| Jenis | Bagian yang wajib ada |
-|---|---|
-| **Tutorial / how-to** | Prasyarat, langkah bernomor, perintah, output yang diharapkan, verifikasi, troubleshooting, cleanup |
-| **Konsep / explainer** | Definisi, analogi, cara kerja, trade-off, use case, batasan |
-| **Lab notes** | Environment/versi, topologi, konfigurasi, hasil uji, analisis, pelajaran |
-| **Review / opini** | Tesis, bukti, kontra-argumen, kesimpulan yang tidak berlebihan |
-
-#### Bahasa dan gaya
-
-- Gunakan bahasa Indonesia yang baku tetapi tidak kaku. Konsisten: “saya” untuk penulis, “Anda” untuk pembaca (atau “kita” jika memang mengajak bersama).
-- Hindari slang berlebihan, “wkwk”, ALL CAPS, dan hiperbola. Istilah informal boleh, tetapi jangan sampai mengaburkan makna.
-- Definisikan akronim saat pertama muncul: “Software Defined Network (SDN)”.
-- Kapitalisasi nama merek secara konsisten: Docker, Linux, GitHub, NGINX, Cisco, Kubernetes.
-- Gunakan *italic* untuk istilah asing pada kemunculan pertama bila perlu; jangan mencampur bahasa dalam satu kalimat tanpa alasan.
-- Aktif dan langsung. Hindari kalimat bertele-tele dan terjemahan kaku (“di mana” untuk *where*).
-- Satu paragraf satu gagasan. Pecah kalimat yang lebih dari ±25 kata.
-- Bedakan “container” (konsep) dan `docker` (perintah) dengan format yang konsisten.
-- Gunakan backtick untuk perintah, path, nama file, IP, port, dan nilai konfigurasi: `docker ps`, `/etc/nginx/nginx.conf`, `192.168.1.1/24`.
-- Tulis satuan dengan benar: `100 Mbps`, `1 Gbps`, `300 MB`, `2 vCPU`.
-
-#### Akurasi teknis
-
-- Uji perintah di environment yang disebutkan. Tulis versi OS/tools bila relevan: “diuji pada Ubuntu 22.04, Docker 24”.
-- Jangan mengarang output. Jika hanya ilustrasi, tandai “contoh output”.
-- Periksa tabel, rumus, prefix, range IP, dan angka. Kesalahan kecil seperti `183.30.40.131` vs `183.30.4.131` merusak kredibilitas.
-- Untuk perintah destruktif (`rm -rf`, `docker prune`, format disk), beri peringatan dan langkah backup.
-- Jangan menampilkan password default tanpa peringatan untuk menggantinya. Jangan pernah menulis token/secret asli.
-- Untuk klaim yang mudah berubah (harga, versi, fitur), sebutkan “per <bulan tahun>”.
-- Prioritaskan sumber resmi: dokumentasi vendor, RFC/IETF, man page, repositori resmi.
-- Jangan menyalin artikel orang lain. Kutip dan beri tautan; tulis ulang dengan pemahaman sendiri.
-
-#### Kode dan perintah
-
-- Selalu gunakan fenced code block dengan bahasa: `bash`, `yaml`, `dockerfile`, `nginx`, `text`.
-- Buat perintah siap copy-paste. Jangan menulis prompt `$` kecuali memang sedang menunjukkan prompt.
-- Pisahkan perintah dan output ke blok berbeda. Jangan mencampur output ke dalam blok perintah.
-- Jelaskan placeholder: `<nama-container>`, `<IP-server>`, `<path-file>`.
-- Satu blok kode untuk satu tugas. Jangan menempel 50 baris tanpa penjelasan.
-- Jangan hardcode kredensial; gunakan environment variable atau placeholder.
-- Setelah langkah yang mengubah sistem, sertakan cara verifikasi dan cara rollback/cleanup.
-
-#### Gambar dan tabel
-
-- Crop screenshot ke area penting, bukan seluruh desktop. Tambahkan anotasi bila membantu.
-- Jangan tampilkan data sensitif pada screenshot.
-- `alt` harus menjelaskan isi gambar, bukan “gambar1”.
-- Beri caption singkat jika gambar butuh konteks: `*Gambar 1. Topologi lab.*`
-- Tabel hanya untuk perbandingan/data tabular. Maksimal 5 kolom agar tidak overflow di mobile.
-- Selalu tulis header tabel dan satuan pada kolom.
-
-#### SEO dan aksesibilitas
-
-- Subtitle harus mengandung inti topik; jangan keyword stuffing.
-- Slug pendek dan deskriptif.
-- Tautkan 1–3 artikel internal yang relevan dan 1–3 referensi eksternal otoritatif.
-- Gunakan teks link deskriptif: “dokumentasi resmi Docker”, bukan “klik di sini”.
-- Jangan memakai warna sebagai satu-satunya pembeda makna.
-- Pastikan heading berurutan dan tidak ada gambar tanpa `alt`.
-
-#### Alur editorial
-
-1. Tentukan tujuan, target pembaca, dan satu kalimat *takeaway*.
-2. Buat outline sebelum menulis.
-3. Tulis draft tanpa terlalu banyak mengedit.
-4. Uji semua perintah dan tangkap output asli.
-5. Fact-check angka, versi, nama produk, dan tautan.
-6. Edit: hapus kalimat redundan, pecah paragraf panjang, konsistenkan istilah.
-7. Baca ulang dengan keras; perbaiki kalimat yang membingungkan.
-8. Cek front matter, gambar, `alt`, tag, dan tanggal.
-9. Preview lokal dan cek tampilan mobile.
-10. Baru publikasikan.
-
-#### Rubrik kualitas
-
-| Kriteria | Lulus jika |
-|---|---|
-| **Akurasi** | Perintah berjalan, angka benar, tidak ada klaim tanpa dasar |
-| **Struktur** | Pembaca bisa menemukan langkah/konsep dengan cepat |
-| **Kelengkapan** | Prasyarat, verifikasi, dan batasan dijelaskan |
-| **Kejelasan** | Kalimat pendek, istilah didefinisikan, tidak ada jargon menggantung |
-| **Bukti** | Ada perintah/output/contoh dan referensi |
-| **Format** | Heading rapi, kode berlabel, gambar beralt, tabel terbaca |
-| **Etika** | Tidak ada secret, data pribadi, atau plagiarisme |
-
-#### Template artikel profesional
-
-Sesuaikan bagian dengan jenis artikel; tidak semua bagian wajib untuk artikel pendek.
-
-````markdown
----
-layout: post
-title: "Judul Spesifik dan Deskriptif"
-subtitle: "Hasil yang didapat pembaca dalam satu kalimat"
-image: /img/topik/thumbnail.png
-bigimg:
-  - /img/topik/header.jpg
-tags: [jaringan komputer, linux]
----
-
-> **Ringkasan:** Satu paragraf tentang masalah, solusi, dan hasil.
-
-## Prasyarat
-
-- OS/tools dan versinya
-- Akses/permission yang dibutuhkan
-- Pengetahuan dasar yang diasumsikan
-
-## Langkah 1 — Nama langkah
-
-Penjelasan singkat mengapa langkah ini dilakukan.
+### Selesai bila
 
 ```bash
-perintah --flag nilai
-```
-
-Output yang diharapkan:
-
-```text
-...
-```
-
-## Verifikasi
-
-Cara memastikan langkah berhasil.
-
-## Troubleshooting
-
-| Gejala | Penyebab | Solusi |
-|---|---|---|
-| ... | ... | ... |
-
-## Kesimpulan
-
-Ringkasan, batasan, dan langkah berikutnya.
-
-## Referensi
-
-- [Dokumentasi resmi](https://example.com)
-````
-
-### Menambah gambar
-
-1. Simpan di `img/<topik>/nama-deskriptif.ext`.
-2. Rujuk dengan `/img/<topik>/nama-deskriptif.ext`.
-3. Pastikan `alt` bermakna.
-4. Cek tidak ada nama file yang bentrok atau karakter aneh.
-5. Jangan menghapus gambar lama sebelum memastikan tidak dirujuk:
-
-```bash
-grep -R "nama-gambar" _posts *.md _includes _layouts _config.yml
+node scripts/check-post.mjs _posts/<file>.md
+docker build -t yogiex-preview . && docker run --rm -p 4000:4000 -v "$PWD:/srv/jekyll" yogiex-preview
 ```
 
 ---
@@ -506,10 +342,10 @@ Untuk penambahan/penghapusan gambar:
 
 Untuk perubahan konten:
 
+- [ ] `node scripts/check-post.mjs _posts/<file>.md` exit 0.
+- [ ] WARN ditinjau satu per satu (judul/subtitle, tag baru, hotlink).
 - [ ] YAML valid (`bundle exec jekyll build --strict_front_matter`).
 - [ ] Tanggal di nama file benar dan tidak future-dated.
-- [ ] Tag tidak kosong/duplikat.
-- [ ] Path gambar absolut.
 - [ ] URL referensi baru dicek statusnya.
 
 Untuk deploy:

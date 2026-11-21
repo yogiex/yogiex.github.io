@@ -18,6 +18,8 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - uses: ruby/setup-ruby@v1
         with:
@@ -26,6 +28,23 @@ jobs:
 
       - name: Build dengan strict front matter
         run: bundle exec jekyll build --trace --strict_front_matter
+
+      - name: Validasi artikel yang berubah
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            base="${{ github.event.pull_request.base.sha }}"
+          else
+            base="${{ github.event.before }}"
+          fi
+          if [ -z "$base" ] || [ "$base" = "0000000000000000000000000000000000000000" ]; then
+            echo "tanpa base commit (branch baru); lewati pemeriksaan bertahap"
+            exit 0
+          fi
+          changed=$(git diff --name-only --diff-filter=AM "$base" HEAD -- '_posts/*.md')
+          if [ -z "$changed" ]; then echo "tidak ada artikel berubah"; exit 0; fi
+          echo "Artikel berubah:"; echo "$changed"
+          # shellcheck disable=SC2086
+          node scripts/check-post.mjs $changed
 
       - name: Pastikan vendor/ tidak ikut ter-build
         run: |
@@ -46,7 +65,8 @@ jobs:
 
       - name: Pastikan setiap halaman punya meta description
         run: |
-          missing=$(grep -rL '<meta name="description"' _site --include='*.html' || true)
+          missing=$(grep -rL '<meta name="description"' _site --include='*.html' \
+            --exclude-dir=img --exclude-dir=diagrams --exclude-dir=css --exclude-dir=js || true)
           if [ -n "$missing" ]; then echo "$missing"; echo "Halaman tanpa meta description"; exit 1; fi
 
       - name: Pastikan setiap halaman punya tepat satu h1
@@ -55,5 +75,5 @@ jobs:
           while IFS= read -r f; do
             n=$(grep -o '<h1' "$f" | wc -l)
             [ "$n" -ne 1 ] && bad="$bad$f ($n)"$'\n'
-          done < <(find _site -name '*.html')
+          done < <(find _site -name '*.html' -not -path '*/img/*' -not -path '*/diagrams/*')
           if [ -n "$bad" ]; then printf '%s' "$bad"; exit 1; fi

@@ -117,15 +117,23 @@ Detailed conventions live in [AGENTS.md](AGENTS.md).
 
 ## Writing a post
 
-Short version of the rules:
+1. Copy a template: `templates/post.md` (full) or `templates/post-minimal.md` (short).
+2. Save it as `_posts/YYYY-MM-DD-slug.md` and fill in the front matter.
+3. Validate before committing:
+
+```bash
+node scripts/check-post.mjs _posts/2026-11-20-dns-amplification-ddos.md
+```
+
+The validator enforces 12 rules (A1-A12): file naming, front matter, title and subtitle length, image paths and files, `alt` text, tag list, headings, comments, and HTTPS references. Rules and the body skeleton live in [docs/artikel/FORMAT.md](docs/artikel/FORMAT.md); editorial standards and review rubric in [docs/artikel/STANDAR.md](docs/artikel/STANDAR.md).
+
+Short version:
 
 - `subtitle` of 80-160 characters becomes the `<meta name="description">`.
 - Images use absolute paths `/img/<topic>/file.png`; no hotlinks.
 - Body headings start at `##`; the page header already produces the `<h1>`.
 - `bigimg` is an array; remove the key entirely when there is no header image.
-- File dates must not be in the future.
-
-Full writing standard (structure, tone, code blocks, images, SEO, editorial checklist) is in [AGENTS.md](AGENTS.md).
+- Tags come from `_data/tags.yml`; file dates must not be in the future.
 
 ## Contributing
 
