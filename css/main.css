@@ -4,6 +4,18 @@ layout: null
 
 @import url("pygment_highlights.css");
 
+/* CSS Font Awesome dari CDN tidak menyertakan font-display, sehingga teks yang
+   memakai ikon menunggu font selesai diunduh. Deklarasi ini dimuat setelah CSS
+   CDN tersebut dan menimpanya dengan font-display: swap. */
+@font-face {
+  font-family: 'FontAwesome';
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+  src: url("https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/fonts/fontawesome-webfont.woff2?v=4.6") format("woff2"),
+       url("https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/fonts/fontawesome-webfont.woff?v=4.6") format("woff");
+}
+
 /* --- General --- */
 
 body {

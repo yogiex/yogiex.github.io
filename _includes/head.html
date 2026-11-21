@@ -3,6 +3,25 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ '/img/favicon-32.png' | relative_url }}">
+  <link rel="apple-touch-icon" href="{{ '/img/apple-touch-icon.png' | relative_url }}">
+
+  {%- comment -%}
+    Gambar header adalah elemen LCP di halaman post. Tanpa preload, browser
+    baru meminta berkasnya setelah main.js mengisi background-image, sehingga
+    ada jeda ±1 detik. fetchpriority=high memberi sinyal bahwa berkas ini yang
+    paling menentukan render awal.
+  {%- endcomment -%}
+  {%- if page.bigimg and page.bigimg != empty -%}
+    {%- assign preload_img = page.bigimg.first -%}
+    {%- if preload_img.first -%}{%- assign preload_img = preload_img[0] -%}{%- endif -%}
+    {%- unless preload_img contains "://" -%}{%- assign preload_img = preload_img | relative_url -%}{%- endunless -%}
+  <link rel="preload" as="image" href="{{ preload_img }}" fetchpriority="high">
+  {%- endif -%}
+
   <title>{% if page.use-site-title %}{{ site.title }} {{ site.title-separator }} {{ site.description }}{% elsif page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
 
   <meta name="author" content="{{ site.author.name }}" />
@@ -20,7 +39,7 @@
   {%- if meta_desc == nil or meta_desc == "" -%}
     {%- assign meta_desc = site.description -%}
   {%- endif -%}
-  {%- assign meta_desc_clean = meta_desc | strip_html | normalize_whitespace | xml_escape -%}
+  {%- assign meta_desc_clean = meta_desc | strip_html | normalize_whitespace | xml_escape %}
   <meta name="description" content="{{ meta_desc_clean }}" />
 
   {% if page.url == '/404.html' %}
@@ -45,7 +64,7 @@
 
   {% if layout.common-googlefonts %}
     {% for font in layout.common-googlefonts %}
-      <link rel="stylesheet" href="//fonts.googleapis.com/css?family={{ font }}" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family={{ font }}" />
     {% endfor %}
   {% endif %}
 
@@ -63,7 +82,7 @@
 
   {% if page.googlefonts %}
     {% for font in page.googlefonts %}
-      <link rel="stylesheet" href="//fonts.googleapis.com/css?family={{ font }}" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family={{ font }}" />
     {% endfor %}
   {% endif %}
 

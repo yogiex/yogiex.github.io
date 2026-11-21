@@ -6,6 +6,18 @@
   data-img-src dan berujung pada request ke .../undefined. Hitung hanya entri
   yang benar-benar berisi, lalu pakai jumlah itu untuk seluruh blok di bawah.
 {%- endcomment -%}
+{%- comment -%}
+  Simpan URL gambar pertama di luar loop supaya bisa dipakai sebagai
+  background-image inline pada div header. Dengan begitu gambar LCP sudah
+  diminta oleh parser HTML, bukan menunggu main.js selesai.
+{%- endcomment -%}
+{%- assign big_first = "" -%}
+{%- if page.bigimg and page.bigimg != empty -%}
+  {%- assign big_first = page.bigimg.first -%}
+  {%- if big_first.first -%}{%- assign big_first = big_first[0] -%}{%- endif -%}
+  {%- unless big_first contains "://" -%}{%- assign big_first = big_first | relative_url -%}{%- endunless -%}
+{%- endif -%}
+
 {%- assign big_count = 0 -%}
 {%- if page.bigimg and page.bigimg != empty -%}
   {%- if page.bigimg.first -%}
@@ -50,7 +62,7 @@
 
 <header class="header-section {% if big_count > 0 %}has-img{% endif %}">
 {% if big_count > 0 %}
-<div class="big-img intro-header">
+<div class="big-img intro-header"{% if big_count == 1 and big_first != "" %} style="background-image:url('{{ big_first }}')"{% endif %}>
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
