@@ -1,15 +1,39 @@
 ---
 layout: default
-title: 404 - Page not found
-description: "Halaman yang Anda tuju tidak ditemukan. Kembali ke beranda atau telusuri artikel lewat indeks tag."
+title: "404 - Halaman tidak ditemukan"
+description: "Alamat yang Anda buka tidak tersedia. Kembali ke beranda, telusuri indeks tag, atau baca artikel terbaru di blog ini."
 permalink: /404.html
 sitemap: false
 ---
 
-<div class="text-center">
-  <h1>Halaman ini tidak ada</h1>
-  <p>Alamat yang Anda buka mungkin sudah berubah atau salah ketik.</p>
-  <br/>
+<div class="row">
+  <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
-  <img src="{{ site.baseurl }}/img/404-southpark.jpg" alt="Ilustrasi karakter kartun untuk halaman 404" />
+    <div class="error-404">
+      <p class="error-404-code">404</p>
+      <h1 class="error-404-title">Halaman tidak ditemukan</h1>
+      <p class="error-404-lead">
+        Alamat yang Anda buka mungkin sudah berubah, salah ketik, atau artikelnya
+        memang belum pernah ada.
+      </p>
+
+      <div class="error-404-actions">
+        <a class="btn btn-primary" href="{{ '/' | relative_url }}">Kembali ke beranda</a>
+        <a class="btn btn-default" href="{{ '/tags/' | relative_url }}">Telusuri indeks tag</a>
+      </div>
+
+      <section class="error-404-recent" aria-labelledby="error-404-recent-title">
+        <h2 id="error-404-recent-title">Artikel terbaru</h2>
+        <ul class="error-404-recent-list">
+          {% for post in site.posts limit:5 %}
+          <li>
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            <span class="error-404-date">{% include tanggal.html d=post.date %}</span>
+          </li>
+          {% endfor %}
+        </ul>
+      </section>
+    </div>
+
+  </div>
 </div>
