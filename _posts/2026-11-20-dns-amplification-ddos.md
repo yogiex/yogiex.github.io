@@ -260,3 +260,5 @@ Pencegahan paling mendasar bukan di sisi korban, melainkan di sisi server DNS: j
 - [RFC 2827 / BCP 38 — Network Ingress Filtering: Defeating Denial of Service Attacks which employ IP Source Address Spoofing](https://www.rfc-editor.org/rfc/rfc2827)
 - [US-CERT Alert TA13-088A — DNS Amplification Attacks (CISA)](https://www.cisa.gov/news-events/alerts/2013/03/29/dns-amplification-attacks)
 - [Wikipedia — Denial-of-service attack (bagian Amplification)](https://en.wikipedia.org/wiki/Denial-of-service_attack)
+
+Bacaan terkait: [Zero Trust Network Architecture (ZTNA)](/2026-11-25-zero-trust-network-architecture/) menjelaskan prinsip akses per permintaan yang relevan saat menyusun pertahanan berlapis.

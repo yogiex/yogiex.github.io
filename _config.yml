@@ -170,6 +170,8 @@ exclude:
   - .agents
   - vendor
   - .bundle
+  - img/ztna/ztna-alur-akses.html
+  - img/ztna/ztna-alur-akses.png
 
 # prose.io config
 prose:

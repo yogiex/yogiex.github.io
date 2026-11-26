@@ -320,3 +320,5 @@ Kalau Anda belum nyaman dengan konsep di baliknya, dua artikel lama di blog ini 
 - [Neutron di Kolla-Ansible](https://docs.openstack.org/kolla-ansible/2026.2/reference/networking/neutron.html) — driver jaringan default dan cara mengaktifkan OVN.
 - [OpenStack Map](https://www.openstack.org/openstack-map/) — peta ekosistem: layanan inti, alat klien, operasi, dan siklus hidup.
 - [OpenStack Project Navigator](https://www.openstack.org/software/project-navigator/openstack-components) — daftar proyek dan statusnya.
+
+Bacaan terkait: [Zero Trust Network Architecture (ZTNA)](/2026-11-25-zero-trust-network-architecture/) membahas cara membatasi akses ke satu aplikasi, bukan seluruh jaringan tempat aplikasi itu berjalan.

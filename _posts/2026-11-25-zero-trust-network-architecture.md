@@ -1,13 +1,15 @@
 ---
 layout: post
 title: "Zero Trust Network Architecture (ZTNA): Prinsip dan Komponen"
-subtitle: "Panduan konsep ZTNA: cara kerja zero trust architecture menurut NIST, komponen PDP/PEP, tabel ZTNA vs VPN, dan batasannya."
+subtitle: "Panduan konsep ZTNA dan zero trust architecture: tujuh prinsip NIST, komponen PDP/PEP, perbandingan dengan VPN, dan batasannya."
 image: /img/ztna/ztna-alur-akses.webp
+bigimg:
+  - /img/ztna/ztna-header.jpg
 share-img: https://yogiex.github.io/img/ztna/ztna-alur-akses.webp
 tags: [security, jaringan komputer, cloud computing]
 ---
 
-> **Ringkasan:** VPN memberi kepercayaan penuh begitu satu autentikasi lolos. ZTNA memecahnya menjadi keputusan per permintaan: identitas, postur perangkat, dan konteks dinilai ulang sebelum satu aplikasi dibuka. Ini penjelasan konsepnya menurut NIST SP 800-207, dari tujuh prinsip sampai titik lemahnya.
+> **Ringkasan:** VPN memberi kepercayaan penuh begitu satu autentikasi lolos. ZTNA (*zero trust network access*) memecahnya menjadi keputusan per permintaan: identitas, postur perangkat, dan konteks dinilai ulang sebelum satu aplikasi dibuka. Ini penjelasan konsepnya menurut NIST SP 800-207, dari tujuh prinsip sampai titik lemahnya.
 
 Seorang admin jaringan sedang di kafe dan perlu membuka dasbor monitoring yang ada di kantor. Dengan VPN, ia menekan tombol connect, menunggu tunnel terbentuk, lalu laptopnya mendapat alamat di subnet manajemen. Mulai saat itu tidak ada lagi yang membatasi ia membuka server lain di subnet yang sama, padahal hari itu ia hanya butuh satu halaman dasbor.
 
@@ -85,9 +87,9 @@ Empat langkah berikut menjelaskan alurnya tanpa harus menyebut merek produk.
 
 Perhatikan pemisahan *control plane* dan *data plane*. Keputusan berjalan di jalur kontrol, data aplikasi mengalir di jalur data. Pemisahan inilah yang membuat pencabutan akses bisa dilakukan tanpa menyentuh jaringan fisik. Untuk konteks yang lebih dalam soal pemisahan ini, lihat [pengenalan Software Defined Network](/2020-11-10-pengenalan-sdn/).
 
-![Diagram alur ZTNA: perangkat pengguna mengautentikasi ke identity provider, broker ZTNA menilai izin bersama policy engine, konektor membuka koneksi keluar ke aplikasi internal, dan log dikirim ke SIEM](/img/ztna/ztna-alur-akses.webp)
+![Diagram alur ZTNA: perangkat pengguna mengautentikasi ke identity provider, broker ZTNA menilai izin bersama policy engine, konektor membuka koneksi keluar ke aplikasi internal, log dikirim ke SIEM, dan permintaan yang ditolak berhenti di policy engine](/img/ztna/ztna-alur-akses.webp)
 
-*Gambar 1. Satu permintaan di ZTNA: identitas dan postur perangkat menentukan akses ke satu aplikasi, bukan seluruh jaringan. Diagram dibuat sendiri untuk artikel ini.*
+*Gambar 1. Satu permintaan di ZTNA: identitas dan postur perangkat menentukan akses ke satu aplikasi, bukan seluruh jaringan. Jalur putus-putus TOLAK menunjukkan permintaan yang berhenti karena kebijakan. Diagram dibuat sendiri untuk artikel ini.*
 
 ## Lima komponen yang harus ada
 
@@ -104,6 +106,10 @@ NIST memecah titik keputusan menjadi dua bagian: policy engine yang menilai, dan
 | Konektor aplikasi | Menghubungkan broker ke aplikasi | Bagian dari PEP | Umumnya koneksi keluar, tanpa buka port masuk |
 | Telemetri dan SIEM | Menyimpan log dan sinyal risiko | Log dan SIEM | Tanpa ini, kebijakan tidak pernah membaik |
 
+Identity provider adalah komponen yang paling sering dianggap selesai padahal belum. Yang dibutuhkan bukan hanya login, tetapi atribut yang akurat: grup, peran, status karyawan, dan perangkat yang terdaftar. Jika keanggotaan grup masih diperbarui manual, kebijakan ZTNA akan mewarisi kesalahan itu, dan biasanya dalam bentuk akses berlebih yang tidak pernah dicabut.
+
+Konektor juga perlu diperhatikan karena ia yang menyentuh aplikasi. Konektor yang berjalan sebagai koneksi keluar menghilangkan kebutuhan membuka port masuk, tetapi menuntut dokumentasi aplikasi yang rapi. Tanpa inventaris, konektor hanya memindahkan masalah: alih-alih subnet terbuka, yang terbuka adalah daftar aplikasi yang isinya tidak diketahui pemiliknya.
+
 ## Tiga cara membangun ZTNA dan kapan dipakai
 
 Tidak semua ZTNA dibangun dengan cara yang sama. NIST menyebut tiga pendekatan yang dalam praktik sering digabung.
@@ -115,6 +121,8 @@ Tidak semua ZTNA dibangun dengan cara yang sama. NIST menyebut tiga pendekatan y
 | Software defined perimeter | Controller membentuk jalur lewat overlay, kanal terenkripsi | Akses pengguna ke aplikasi internal | Butuh agen, menambah hop dan latensi |
 
 Tidak ada satu pendekatan yang menang. Organisasi yang matang biasanya memakai identitas sebagai basis kebijakan, micro-segmentation untuk beban kerja sensitif, dan SDP untuk akses pengguna. Yang perlu dihindari adalah memilih alat lebih dulu, lalu menyesuaikan arsitektur dengan alat itu.
+
+Tiga pertanyaan ini membantu memilih titik awal. Pertama, apakah aplikasi yang dilindungi berbasis web dan bisa dijangkau lewat proksi, atau protokol lama yang butuh jalur khusus? Kedua, apakah perangkat pengguna dikelola perusahaan, atau ada BYOD yang tidak bisa dipasangi agen? Ketiga, apakah tim punya kewenangan mengubah konfigurasi aplikasi, atau aplikasi itu milik vendor yang tidak bisa disentuh? Jawaban ketiganya biasanya mempersempit pilihan lebih cepat daripada membandingkan fitur produk.
 
 ## ZTNA versus VPN: yang berubah, bukan sekadar teknologi baru
 
@@ -175,6 +183,8 @@ Ada juga titik buta yang perlu diakui. Ketika semua trafik melewati broker, tim 
 **ZTNA tidak menggantikan kontrol lain.** Patching, endpoint detection, segmentasi data center, dan manajemen akses tetap diperlukan. Zero trust mengatur siapa boleh lewat, bukan menjamin aplikasinya bebas celah.
 
 **Perangkat lama dan OT menyulitkan.** Sistem yang tidak bisa menjalankan agen atau konektor sering harus diakses lewat enclave khusus dengan pengawasan tambahan. Ini kebutuhan nyata, bukan alasan menunda semuanya.
+
+**ZTNA bukan SASE atau SSE.** Ketiganya sering dijual dalam satu paket, tetapi cakupannya berbeda. SASE menggabungkan jaringan dan keamanan berbasis cloud, SSE adalah komponen keamanannya, dan ZTNA hanya satu di antaranya. Membeli paket SASE tidak otomatis menerapkan prinsip zero trust pada aplikasi internal Anda.
 
 **Risiko baru muncul di titik pusat.** NIST mencatat bahwa policy engine dan policy administrator menjadi target bernilai tinggi ([NIST SP 800-207](https://csrc.nist.gov/pubs/sp/800/207/final), §5.1). Jika penyerang menguasai keduanya, seluruh kebijakan bisa dibengkokkan. Ketersediaan juga jadi risiko: matinya broker berarti matinya akses, dan itu perlu direncanakan sejak awal, bukan saat insiden.
 
