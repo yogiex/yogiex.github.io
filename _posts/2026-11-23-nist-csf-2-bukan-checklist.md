@@ -3,6 +3,8 @@ layout: post
 title: "NIST CSF 2.0: Dari Checklist ke Tata Kelola Risiko"
 subtitle: "Panduan konsep CSF 2.0: dari checklist ke selisih profil, dengan fungsi Govern, Tier, dan bedanya dengan ISO 27001."
 image: /img/security/csf/csf-2-thumbnail.png
+bigimg:
+  - /img/security/csf/csf-2-header.jpg
 share-img: https://yogiex.github.io/img/security/csf/csf-2-thumbnail.png
 tags: [security, fundamental]
 ---
