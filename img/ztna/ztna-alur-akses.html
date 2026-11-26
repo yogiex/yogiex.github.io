@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alur satu permintaan di ZTNA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --color-paper:  #ffffff;
+      --color-ink:    #2d3142;
+      --color-muted:  #4f5d75;
+      --color-soft:   #5a6580;
+      --color-accent: #008aff;
+      --font-sans:    'Geist', system-ui, sans-serif;
+      --font-serif:   'Instrument Serif', Georgia, serif;
+      --font-mono:    'Geist Mono', ui-monospace, monospace;
+    }
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-paper);
+      color: var(--color-ink);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+    }
+    .frame { max-width: 1360px; width: 100%; }
+    .diagram-container { width: 100%; overflow-x: auto; }
+    svg { width: 100%; min-width: 1360px; display: block; }
+    @media print {
+      .diagram-container { overflow-x: visible; }
+      svg { min-width: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <div class="diagram-container">
+      <svg viewBox="0 0 1360 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ztna-alur-title ztna-alur-desc">
+        <title id="ztna-alur-title">Alur satu permintaan di ZTNA</title>
+        <desc id="ztna-alur-desc">Perangkat pengguna mengautentikasi ke identity provider, broker ZTNA menilai izin bersama policy engine, lalu konektor membuka koneksi keluar ke satu aplikasi internal tanpa membuka port masuk.</desc>
+        <defs>
+          <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#008aff"/></marker>
+          <marker id="arrow-muted" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker>
+        </defs>
+
+        <rect width="100%" height="100%" fill="#ffffff"/>
+
+        <!-- Kop -->
+        <text x="48" y="44" fill="#4f5d75" font-family="'Geist Mono', monospace" font-size="10.5" letter-spacing="2.2">ZTNA · ALUR AKSES</text>
+        <text x="48" y="84" fill="#2d3142" font-family="'Instrument Serif', Georgia, serif" font-size="32">Alur satu permintaan di ZTNA</text>
+        <text x="48" y="110" fill="#5a6580" font-family="'Geist', sans-serif" font-size="13">Identitas dan postur perangkat menentukan akses ke satu aplikasi, bukan seluruh jaringan.</text>
+
+        <!-- Panah (digambar sebelum kotak) -->
+        <path d="M 224,222 H 294" fill="none" stroke="#008aff" stroke-width="1.6" marker-end="url(#arrow-accent)"/>
+        <path d="M 476,222 H 546" fill="none" stroke="#008aff" stroke-width="1.6" marker-end="url(#arrow-accent)"/>
+        <path d="M 748,222 H 818" fill="none" stroke="#008aff" stroke-width="1.6" marker-end="url(#arrow-accent)"/>
+        <path d="M 1000,222 H 1070" fill="none" stroke="#008aff" stroke-width="1.6" marker-end="url(#arrow-accent)"/>
+
+        <path d="M 648,352 V 276" fill="none" stroke="#4f5d75" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrow-muted)"/>
+        <path d="M 910,352 V 276" fill="none" stroke="#4f5d75" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrow-muted)"/>
+
+        <!-- Label panah -->
+        <rect x="230" y="201" width="60" height="14" fill="#ffffff"/>
+        <text x="260" y="212" fill="#4f5d75" font-family="'Geist Mono', monospace" font-size="9.5" letter-spacing="0.6" text-anchor="middle">1 LOGIN</text>
+
+        <rect x="482" y="201" width="60" height="14" fill="#ffffff"/>
+        <text x="512" y="212" fill="#4f5d75" font-family="'Geist Mono', monospace" font-size="9.5" letter-spacing="0.6" text-anchor="middle">2 POSTUR</text>
+
+        <rect x="754" y="201" width="60" height="14" fill="#ffffff"/>
+        <text x="784" y="212" fill="#4f5d75" font-family="'Geist Mono', monospace" font-size="9.5" letter-spacing="0.6" text-anchor="middle">3 IZIN</text>
+
+        <rect x="1006" y="201" width="60" height="14" fill="#ffffff"/>
+        <text x="1036" y="212" fill="#4f5d75" font-family="'Geist Mono', monospace" font-size="9.5" letter-spacing="0.6" text-anchor="middle">4 KELUAR</text>
+
+        <rect x="654" y="305" width="96" height="15" fill="#ffffff"/>
+        <text x="658" y="316" fill="#4f5d75" font-family="'Geist Mono', monospace" font-size="9.5" letter-spacing="0.6">IZIN / TOLAK</text>
+
+        <rect x="916" y="305" width="76" height="15" fill="#ffffff"/>
+        <text x="920" y="316" fill="#4f5d75" font-family="'Geist Mono', monospace" font-size="9.5" letter-spacing="0.6">LOG AKSES</text>
+
+        <!-- Node -->
+        <g>
+          <rect x="48" y="170" width="176" height="104" rx="6" fill="#ffffff" stroke="#d8dce4" stroke-width="1"/>
+          <rect x="60" y="182" width="48" height="15" rx="2" fill="rgba(45,49,66,0.05)"/>
+          <text x="84" y="193" fill="#4f5d75" font-family="'Geist Mono', monospace" font-size="8.5" letter-spacing="1" text-anchor="middle">KLIEN</text>
+          <text x="62" y="228" fill="#2d3142" font-family="'Geist', sans-serif" font-size="15" font-weight="600">Perangkat pengguna</text>
+          <text x="62" y="248" fill="#5a6580" font-family="'Geist', sans-serif" font-size="11.5">laptop, ponsel, BYOD</text>
+        </g>
+
+        <g>
+          <rect x="296" y="170" width="180" height="104" rx="6" fill="#ffffff" stroke="#d8dce4" stroke-width="1"/>
+          <rect x="308" y="182" width="46" height="15" rx="2" fill="rgba(45,49,66,0.05)"/>
+          <text x="331" y="193" fill="#4f5d75" font-family="'Geist Mono', monospace" font-size="8.5" letter-spacing="1" text-anchor="middle">IdP</text>
+          <text x="298" y="228" fill="#2d3142" font-family="'Geist', sans-serif" font-size="15" font-weight="600">Identity provider</text>
+          <text x="298" y="248" fill="#5a6580" font-family="'Geist', sans-serif" font-size="11.5">MFA, atribut akun</text>
+        </g>
+
+        <g>
+          <rect x="548" y="170" width="200" height="104" rx="6" fill="#f2f8ff" stroke="#008aff" stroke-width="1.6"/>
+          <rect x="560" y="182" width="38" height="15" rx="2" fill="rgba(0,138,255,0.10)"/>
+          <text x="579" y="193" fill="#0060bf" font-family="'Geist Mono', monospace" font-size="8.5" letter-spacing="1" text-anchor="middle">PEP</text>
+          <text x="562" y="228" fill="#2d3142" font-family="'Geist', sans-serif" font-size="15" font-weight="600">Broker ZTNA</text>
+          <text x="562" y="248" fill="#5a6580" font-family="'Geist', sans-serif" font-size="11.5">gerbang per aplikasi</text>
+        </g>
+
+        <g>
+          <rect x="820" y="170" width="180" height="104" rx="6" fill="#ffffff" stroke="#d8dce4" stroke-width="1"/>
+          <rect x="832" y="182" width="58" height="15" rx="2" fill="rgba(45,49,66,0.05)"/>
+          <text x="861" y="193" fill="#4f5d75" font-family="'Geist Mono', monospace" font-size="8.5" letter-spacing="1" text-anchor="middle">KONEKTOR</text>
+          <text x="834" y="228" fill="#2d3142" font-family="'Geist', sans-serif" font-size="15" font-weight="600">Konektor aplikasi</text>
+          <text x="834" y="248" fill="#5a6580" font-family="'Geist', sans-serif" font-size="11.5">koneksi keluar</text>
+        </g>
+
+        <g>
+          <rect x="1072" y="170" width="224" height="104" rx="6" fill="#ffffff" stroke="#d8dce4" stroke-width="1"/>
+          <rect x="1084" y="182" width="42" height="15" rx="2" fill="rgba(45,49,66,0.05)"/>
+          <text x="1105" y="193" fill="#4f5d75" font-family="'Geist Mono', monospace" font-size="8.5" letter-spacing="1" text-anchor="middle">APP</text>
+          <text x="1086" y="228" fill="#2d3142" font-family="'Geist', sans-serif" font-size="15" font-weight="600">Aplikasi internal</text>
+          <text x="1086" y="248" fill="#5a6580" font-family="'Geist', sans-serif" font-size="11.5">dasbor, ERP, arsip</text>
+        </g>
+
+        <text x="1184" y="306" fill="#5a6580" font-family="'Geist', sans-serif" font-size="11" text-anchor="middle">tidak diekspos langsung</text>
+
+        <g>
+          <rect x="548" y="352" width="200" height="88" rx="6" fill="#ffffff" stroke="#d8dce4" stroke-width="1"/>
+          <rect x="560" y="364" width="40" height="15" rx="2" fill="rgba(45,49,66,0.05)"/>
+          <text x="580" y="375" fill="#4f5d75" font-family="'Geist Mono', monospace" font-size="8.5" letter-spacing="1" text-anchor="middle">PDP</text>
+          <text x="562" y="404" fill="#2d3142" font-family="'Geist', sans-serif" font-size="15" font-weight="600">Policy engine</text>
+          <text x="562" y="424" fill="#5a6580" font-family="'Geist', sans-serif" font-size="11.5">postur, peran, konteks</text>
+        </g>
+
+        <g>
+          <rect x="820" y="352" width="180" height="88" rx="6" fill="#ffffff" stroke="#d8dce4" stroke-width="1"/>
+          <text x="834" y="404" fill="#2d3142" font-family="'Geist', sans-serif" font-size="15" font-weight="600">Log dan SIEM</text>
+          <text x="834" y="424" fill="#5a6580" font-family="'Geist', sans-serif" font-size="11.5">telemetri akses</text>
+        </g>
+
+        <!-- Legenda -->
+        <path d="M 48,520 H 88" fill="none" stroke="#008aff" stroke-width="1.6"/>
+        <text x="98" y="524" fill="#4f5d75" font-family="'Geist', sans-serif" font-size="11">alur permintaan</text>
+
+        <path d="M 268,520 H 308" fill="none" stroke="#4f5d75" stroke-width="1" stroke-dasharray="4,3"/>
+        <text x="318" y="524" fill="#4f5d75" font-family="'Geist', sans-serif" font-size="11">keputusan kebijakan dan telemetri</text>
+      </svg>
+    </div>
+  </div>
+</body>
+</html>
